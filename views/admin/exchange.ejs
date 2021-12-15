@@ -1,0 +1,458 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/css/bbtest.css">
+
+<link rel="stylesheet" href="/css/tttest.css">
+<link href="/css/novindatepicker.css" type="text/css" rel="stylesheet"/>
+<script src="/js/test.js"></script>
+<script src="/css/Btest.js"></script>
+<script src="/js/novindatepicker.js"></script>
+
+<style>
+            table tbody {
+                counter-reset: rowNumber;
+            }
+
+        table tbody tr {
+        counter-increment: rowNumber;
+        }
+
+        table tbody tr td:nth-child(5)::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+        }
+</style>
+</head>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+        <%- include('../includes/header.ejs')%> 
+    <!-- Main Menu area End-->
+    <!-- Start Status area -->
+    <!-- Main Menu area End-->
+    <!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+      <!-- Form Element area Start-->
+      <form class="product-form" action="/exchange" method="post">
+        <div class="form-element-area">
+            <div class="container">
+        <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list">
+                            <div style="direction:rtl;">
+                                        <div class="row">
+                                            <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                                <div class="form-group ic-cmp-int">
+                                                    <div class="form-ic-cmp">
+                                                        <i class="notika-icon notika-support"></i>
+                                                    </div>
+                                                    <div class="nk-int-st">
+                                                        <input type="text" name="FromWhichClassToWhichYear" id="FromWhichClassToWhichYear" class="form-control" placeholder=" از صنف در سال  ">
+                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                <div class="form-group ic-cmp-int">
+                                                    <div class="form-ic-cmp">
+                                                        <i class="notika-icon notika-support"></i>
+                                                    </div>
+                                                    <div class="nk-int-st">
+                                                        <input type="text" name="Province" id="Province" class="form-control" placeholder=" ولایت ">
+                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                <div class="form-group ic-cmp-int">
+                                                    <div class="form-ic-cmp">
+                                                        <i class="notika-icon notika-support"></i>
+                                                    </div>
+                                                    <div class="nk-int-st">
+                                                        <input type="text" name="DepartmentNameConvert" id="DepartmentNameConvert" class="form-control" placeholder=" رشته ">
+                                                      </div>
+                                                </div>
+                                            </div>
+                                            <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                <div class="form-group ic-cmp-int">
+                                                    <div class="form-ic-cmp">
+                                                        <i class="notika-icon notika-support"></i>
+                                                    </div>
+                                                    <div class="nk-int-st">
+                                                        <input type="text" name="ToConvertedSchool" id="ToConvertedSchool" class="form-control" placeholder=" به مکتب که تبدیل شده ">
+                                                    </div>
+                                                </div>
+                                            </div><div style="clear:both"></div>
+                                        </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                <div class="row">
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="number" class="form-control" name="ConvertedWrittenNumber" id="ConvertedWrittenNumber" placeholder=" نمبر مکتوب تبدیلی ">
+                                            </div>
+                                        </div>
+                                    </div><div style="clear:both"></div>
+                                </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="ClassNameAndYear" id="ClassNameAndYear" class="form-control" placeholder=" صنف  و سال">                                               
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                                <div class="form-group ic-cmp-int">
+                                                    <div class="form-ic-cmp">
+                                                        <i class="notika-icon notika-support"></i>
+                                                    </div>
+                                                    <div class="nk-int-st">
+                                                        <input type="text" name="DepartmentNameSeparation" id="DepartmentNameSeparation" class="form-control"  placeholder=" رشته">                                              
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text"  name="SeparationCause" id="SeparationCause" class="form-control" placeholder=" علت انفکاک ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-map"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" type="text" name="SeparationWrittenNumber" id="SeparationWrittenNumber" class="form-control" placeholder=" نمبر مکتوب انفکاک ">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                <div class="row">
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-house"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input  type="text" name="RegisterationClassName" id="RegisterationClassName" class="form-control" placeholder=" صنف شمولیت ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-house"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" class="form-control" name="DepartmentNameRagister" id="DepartmentNameRagister" placeholder=" رشته ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-house"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" class="form-control" name="RegistrationYear" id="RegistrationYear" placeholder=" سال ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-house"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="WrittenNumber" id="WrittenNumber" class="form-control" placeholder=" نمبر مکتوب ">
+                                            </div>
+                                        </div>
+                                    </div><div style="clear:both"></div>
+                                </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="number" class="form-control" name="GraduatedWrittenNumber" id="GraduatedWrittenNumber" placeholder=" نمبر مکتوب فراغت ">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                            </div> 
+                            <div style="direction:rtl;">
+                                <div class="row">
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="GraduatedYear" id="GraduatedYear" class="form-control" placeholder=" صنف فارغه ">
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="GovernmentalExam" id="GovernmentalExam" class="form-control" placeholder=" امتحان دولتی ">
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="FinalAverage" id="FinalAverage" class="form-control" placeholder=" اوسط نهایی ">
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="GraduatedDegree" id="GraduatedDegree" class="form-control" placeholder=" درجه فراغت ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="clear:both"></div>
+                                </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div class="form-example-int mg-t-15">
+                                            <button  type="button" onclick="postData(this)" class="  btn notika-add-todo">ثبت</button>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+    </div>
+</div>
+    </form>
+
+
+    <!-- Form Element area End-->
+    <%- include('../includes/head.ejs')%>
+    
+	<!-- Breadcomb area End-->
+    <!-- Data Table area Start-->
+
+
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="table-responsive">
+                                <table  id="tableData" class="table table-striped tableData">
+                                        <thead>
+                                         <tr>
+                                            <th>تنظیمات</th>
+                                            <th>ولایت</th>
+                                            <th>صنف و سال</th>
+                                            <th>رشته</th>
+                                            <th>شماره</th> 
+                                         </tr>
+                                        </thead>
+                                        <% if(students.length > 0){ let j=1;%>
+                                            <tbody>
+                                                <% for(let i of students){ j++;%>
+                                                <tr>
+                                                    <td class="verticalText">
+                                                        <!-- <form action="/eidtReport" method="POST">   -->
+                                                            <input type="hidden" name="studentId" value="<%= i._id%>"> 
+                                                            <input type="button"  style="background-color:#00c292;color:#ffffff;border:none;outline:none; padding:0.3rem 1rem 0.65rem 1rem" data-toggle="modal" data-target="#editModal" data-whatever="<%= [i._id,i.FromWhichClassToWhichYear,i.DepartmentNameConvert,i.ToConvertedSchool,i.Province,i.ConvertedWrittenNumber,i.RegisterationClassName,i.RegistrationYear,i.WrittenNumber,i.ClassNameAndYear,i.DepartmentNameSeparation,i.SeparationCause,i.SeparationWrittenNumber,i.GraduatedYear, i.GovernmentalExam, i.FinalAverage, i.GraduatedDegree,i.GraduatedWrittenNumber] %>" onclick="returnRowToEdit(this)" value="تغییر "> 
+                                                            <input type="button"  style="background-color:#fa4b06;color:#ffffff;border:none;outline:none; padding:0.3rem 1rem 0.65rem 1rem"  value="حذف" id ="sample" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= i._id %>" onclick="returnRowToDelete(this)">
+                                                        <!-- </form> -->
+                                                    </td>
+                                                    <td name="Province"><%= i.Province %></td>
+                                                    <td name="ClassNameAndYear"><%= i.ClassNameAndYear %></td>
+                                                    <td name="DepartmentNameSeparation"><%= i.DepartmentNameSeparation %></td>
+                                                    <td></td>
+                                                </tr>
+                                                <%}%>
+                                            </tbody>
+                                          <%}%>
+                                </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update data</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                        <input type="hidden" id="id" name="id" class="form-control" >
+                        <input type="text" name="FromWhichClassToWhichYear" id="FromWhichClassToWhichYear" class="form-control" placeholder=" از صنف در سال  ">
+                        <input type="text" name="Province" id="Province" class="form-control" placeholder=" ولایت ">
+                        <input type="text" name="DepartmentNameConvert" id="DepartmentNameConvert" class="form-control" placeholder=" رشته ">
+                        <input type="text" name="ToConvertedSchool" id="ToConvertedSchool" class="form-control" placeholder=" به مکتب که تبدیل شده ">
+                        <input type="number" class="form-control" name="ConvertedWrittenNumber" id="ConvertedWrittenNumber" placeholder=" نمبر مکتوب تبدیلی ">
+                        <input type="text" name="ClassNameAndYear" id="ClassNameAndYear" class="form-control" placeholder=" صنف  و سال">
+                        <input type="text" name="DepartmentNameSeparation" id="DepartmentNameSeparation" class="form-control datepicker"  placeholder=" رشته">
+                        <input type="text"  name="SeparationCause" id="SeparationCause" class="form-control" placeholder=" علت انفکاک ">
+                        <input type="text" type="text" name="SeparationWrittenNumber" id="SeparationWrittenNumber" class="form-control" placeholder=" نمبر مکتوب انفکاک ">                       
+                        <input type="text" class="form-control" name="DepartmentNameRagister" id="DepartmentNameRagister" placeholder=" رشته ">
+                        <input  type="text" name="RegisterationClassName" id="RegisterationClassName" class="form-control" placeholder=" صنف شمولیت ">
+                        <input type="text" class="form-control" name="RegistrationYear" id="RegistrationYear" placeholder=" سال ">
+                        <input type="text" name="WrittenNumber" id="WrittenNumber" class="form-control" placeholder=" نمبر مکتوب ">
+                        <input type="text" type="text" name="GraduatedYear" id="GraduatedYear" class="form-control" placeholder=" نمبر مکتوب انفکاک ">                       
+                        <input type="text" class="form-control" name="GovernmentalExam" id="GovernmentalExam" placeholder=" رشته ">
+                        <input  type="text" name="FinalAverage" id="FinalAverage" class="form-control" placeholder=" صنف شمولیت ">
+                        <input type="text" class="form-control" name="GraduatedDegree" id="GraduatedDegree" placeholder=" سال ">
+                        <input type="text" name="GraduatedWrittenNumber" id="GraduatedWrittenNumber" class="form-control" placeholder=" نمبر مکتوب ">
+                    
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" onClick="editData(this)" data-dismiss="modal">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+         
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <h2 class="col-form-label">Are you sure to delete record?</h2>
+                      <input type="text" class="form-control" name="recipientName" id="recipientName">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" onClick="postDelete(this)" data-dismiss="modal">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  <script>
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    modal.find('.modal-body input').val(recipient)
+  })
+  
+  $('#editModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    
+    var arrayData = recipient.split(',');
+    // console.log(arrayData)
+    modal.find('.modal-body #id').val(arrayData[0]);
+    modal.find('.modal-body #FromWhichClassToWhichYear').val(arrayData[1]);
+    modal.find('.modal-body #DepartmentNameConvert').val(arrayData[3]);
+    modal.find('.modal-body #ToConvertedSchool').val(arrayData[2]);
+    modal.find('.modal-body #Province').val(arrayData[4]);
+    modal.find('.modal-body #ConvertedWrittenNumber').val(arrayData[5]);
+    modal.find('.modal-body #RegisterationClassName').val(arrayData[6]);
+    modal.find('.modal-body #DepartmentNameRegistration').val(arrayData[7]);
+    modal.find('.modal-body #RegistrationYear').val(arrayData[8]);
+    modal.find('.modal-body #WrittenNumber').val(arrayData[9]);
+    modal.find('.modal-body #ClassNameAndYear').val(arrayData[10]);
+    modal.find('.modal-body #DepartmentNameSeparation').val(arrayData[11]);
+    modal.find('.modal-body #SeparationCause').val(arrayData[12]);
+    modal.find('.modal-body #SeparationWrittenNumber').val(arrayData[13]);
+    modal.find('.modal-body #GraduatedYear').val(arrayData[14]);
+    modal.find('.modal-body #GovernmentalExam').val(arrayData[15]);
+    modal.find('.modal-body #FinalAverage').val(arrayData[16]);
+    modal.find('.modal-body #GraduatedDegree').val(arrayData[17]);
+    modal.find('.modal-body #GraduatedWrittenNumber').val(arrayData[18]);
+  })
+  </script>
+  
+      <script src="/js/exchangeData.js"></script>
+      <script src="/js/jquery.min.js"></script>
+
+      <script src="/js/novindatepicker.js"></script>
+        <%- include('../includes/footer.ejs')%>
+         <!-- <script src="/js/data.js"></script> -->
+         <script>
+            document.querySelectorAll('.datepicker').novinDatePicker();
+        </script>
+     <!-- End Footer area-->
+       
+        <%- include('../includes/end.ejs')%>
+  

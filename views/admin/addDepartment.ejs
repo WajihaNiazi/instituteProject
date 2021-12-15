@@ -1,0 +1,228 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+        table tbody {
+            counter-reset: rowNumber;
+        }
+        
+        table tbody tr {
+        counter-increment: rowNumber;
+        }
+        
+        table tbody tr td:nth-child(1)::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+        <%- include('../includes/header.ejs')%> 
+    <!-- Main Menu area End-->
+    <!-- Start Status area -->
+    <!-- Main Menu area End-->
+    <!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="form-element-area">
+        <div class="container">
+            <div class="row" style="direction: rtl;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <!-- form data for departments -->
+                            <form action="/getDepartment" method="POST">
+                            <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-support"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="نام دیپارتمنت...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                <div class="row">
+                                    <div class="form-example-int mg-t-15">
+                                        <button type="button" class="  btn notika-add-todo" onclick="postData(this)">ثبت</button>
+                                    </div><div style="clear:both"></div>
+                                </div>
+                            </div>
+                            </form>
+                            <!--end form data ------------------------ -->
+                            <!-- table for showing departments -->
+                            <div class="row" style="margin-top:4%;">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="data-table-list">
+                                        <div class="table-responsive">
+                                            <table id="tableData" style="direction:rtl; text-align: center;" class="table table-striped"> 
+                                                <thead>
+                                                    <tr>
+                                                        <th><center>شماره</center></th>
+                                                        <th><center>نام دیپارتمنت</center></th>
+                                                        <th><center>تنظیمات</center></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody >
+                                                    <%
+                                                    if(departments.length>0){
+                                                        let i=0;
+                                                        for(d of departments){
+                                                            i++
+                                                            %>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td name="name"><%= d.name %></td>
+                                                                <td>
+                                                                    <input type="hidden" name="departmentId" value="<%= d._id %>">
+                                                                    <button  type="button" class="btn btn-warning notika-btn-warning" data-toggle="modal"  data-target="#editModal" data-whatever="<%= [d._id, d.name] %>" onclick="returnRowToEdit(this)">ویرایش</button>
+                                                                    <button id ="sample"  type="button" class="btn btn-danger notika-btn-danger"  data-toggle="modal" data-target="#exampleModal" data-whatever="<%= d._id %>" onclick="returnRowToDelete(this)">حذف</button>
+                                                                </td>
+                                                            </tr>
+                                                            <%}
+                                                        }%>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end table------------------------- -->
+                            <!-- modal for editting ---------------->
+                            <div class="row" >
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="modals-list mg-t-30">
+                                        <div class="modals-single">
+                                            <div class="modals-default-cl">
+                                                <div class="modal fade" id="editModal" role="dialog">
+                                                    <div class="modal-dialog modals-default">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                                                        <div class="form-group ic-cmp-int">
+                                                                            <div class="nk-int-st">
+                                                                                <input type="hidden" id="id" name="id" class="form-control" >
+                                                                                <input type="text" name="dpname" id="dpname" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="  btn notika-add-todo" onclick="editData(this)" data-dismiss="modal">بلی</button>
+                                                                <button type="button" class="  btn notika-add-todo" data-dismiss="modal">خیر</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end edit modal ------------------ -->
+                            <!-- modal for deleting--------------- -->
+                            <div class=" row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="modals-list mg-t-30">
+                                        <div class="modals-single">
+                                            <div class="modals-default-cl">
+                                                <div class="modal fade" id="exampleModal" role="dialog">
+                                                    <div class="modal-dialog modals-default">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div class="form-group">
+                                                                        <h2 class="col-form-label"><center>آیا مطمئن اید می خواهید حذف کنید؟</center></h2>
+                                                                        <input type="hidden" class="form-control" name="recipientName" id="recipientName">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="  btn notika-add-todo" onclick="postDelete(this)" data-dismiss="modal">بلی</button>
+                                                                <button type="button" class="  btn notika-add-todo" data-dismiss="modal">خیر</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end delete modal -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+<script>
+$('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    modal.find('.modal-body input').val(recipient)
+})
+
+$('#editModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    
+    var arrayData = recipient.split(',');
+    // console.log(arrayData)
+    modal.find('.modal-body #id').val(arrayData[0]);
+    modal.find('.modal-body #dpname').val(arrayData[1]);
+})
+</script>
+<script src="/js/myJava.js"></script>
+<!-- Form Element area End-->
+<!-- End Realtime sts area-->
+<!-- Start Footer area-->
+    <!-- Form Element area End-->
+<!-- End Realtime sts area-->
+<!-- Start Footer area-->
+<%- include('../includes/footer.ejs')%>
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+     <!-- Data Table JS============================================ -->
+     <script src="js/data-table/jquery.dataTables.min.js"></script>
+     <script src="js/data-table/data-table-act.js"></script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

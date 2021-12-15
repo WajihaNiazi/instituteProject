@@ -1,0 +1,111 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="style.css">
+<style>
+        table tbody {
+            counter-reset: rowNumber;
+        }
+        
+        table tbody tr {
+        counter-increment: rowNumber;
+        }
+        
+        table tbody tr td:nth-child(1)::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+        <%- include('../includes/header.ejs')%> 
+    <!-- Main Menu area End-->
+    <!-- Start Status area -->
+    <!-- Main Menu area End-->
+    <!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="form-element-area">
+        <div class="container">
+            <div class="row" style="direction: rtl;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <div class="row" style="margin-top:4%;">
+                                <form action="/teacherInformation">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="data-table-list">
+                                            <div class="table-responsive">
+                                                <table id="tableData" style="direction:rtl; text-align: center;" class="table table-striped"> 
+                                                    <thead>
+                                                        <tr>
+                                                            <th><center>شماره</center></th>
+                                                            <th><center>اسم و تخلص</center></th>
+                                                            <th><center>وظیفهء فعلی</center></th>
+                                                            <th><center>رشته</center></th>
+                                                            <th><center>درجهء تحصیل</center></th>
+                                                            <th><center>سابقهء خدمت</center></th>
+                                                            <th><center>ساعات درسی</center></th>
+                                                            <th><center>مضامین</center></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody >
+                                                        <%
+                                                        if(staff.length>0){
+                                                            let i=0;
+                                                            for(s of staff){
+                                                                i++
+                                                                %>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td><%=s.name+' '+ s.Lastname %></td>
+                                                                    <td><%= s.currentJob %></td>
+                                                                    <td><%= s.major %></td>
+                                                                    <td><%= s.degree %></td>
+                                                                    <td><%= s.yearsOfWorking %></td>
+                                                                    <td><%= %></td>
+                                                                    <td><%=  %></td>
+                                                                </tr>
+                                                                <%}
+                                                            }%>
+                                                        </tbody>
+                                                    </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end table------------------------- -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../includes/footer.ejs')%>
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

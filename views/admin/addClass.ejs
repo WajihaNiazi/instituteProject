@@ -1,0 +1,261 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+    table tbody {
+        counter-reset: rowNumber;
+    }
+    
+    table tbody tr {
+    counter-increment: rowNumber;
+    }
+    
+    table tbody tr td:nth-child(1)::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+    }
+</style>
+</head>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+        <%- include('../includes/header.ejs')%> 
+    <!-- Main Menu area End-->
+    <!-- Start Status area -->
+    <!-- Main Menu area End-->
+    <!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+<!-- Breadcomb area End-->
+<!-- Form Element area Start-->
+<form action="/addClass" method="POST">
+    <div class="form-element-area">
+        <div class="container">
+            <div class="row" >
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <div style="float: right;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="chosen-select-act fm-cmp-mg">
+                                    <select id="nameOfClass" name="nameOfClass" class="chosen">
+                                            <option>... صنف</option>
+                                            <% if(studentYear.length>0){
+                                                for(sYear of studentYear){
+                                                        if(dpId.length>0){ 
+                                                            for(d of dpId){
+                                                            %>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name %>"><%=sYear.GraduationYear+' '+d.name %></option>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' A' %>"><%=  sYear.GraduationYear+' '+d.name+ ' A'  %></option>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' B' %>"><%=  sYear.GraduationYear+' '+d.name+ ' B'  %></option>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' C' %>"><%=  sYear.GraduationYear+' '+d.name+ ' C'  %></option>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' D' %>"><%=  sYear.GraduationYear+' '+d.name+ ' D'  %></option>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' E' %>"><%=  sYear.GraduationYear+' '+d.name+ ' E'  %></option>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' F' %>"><%=  sYear.GraduationYear+' '+d.name+ ' F'  %></option>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' G' %>"><%=  sYear.GraduationYear+' '+d.name+ ' G'  %></option>
+                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' H' %>"><%=  sYear.GraduationYear+' '+d.name+ ' H'  %></option>
+                                                 <% }
+                                                }
+                                            }
+                                        }%>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="direction:rtl; margin-right: 4%;">
+                                <div class="row">
+                                    <div class="form-example-int mg-t-15">
+                                        <button type="button" onclick="postClassData(this)" class="  btn notika-add-todo">ثبت</button>
+                                    </div><div style="clear:both"></div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="data-table-list">
+                                        <div class="table-responsive">
+                                            <table id="data-table-basic" style=" direction:rtl; text-align: center;"  class="table table-striped dataTable no-footer" role="grid" aria-describedby="data-table-basic_info">
+                                                <thead>
+                                                    <tr>
+                                                        <th><center>شماره</center></th>
+                                                        <th><center>نام صنف</center></th>
+                                                        <th><center>تنظیمات</center></th>
+                                                    </tr>
+                                                </thead>
+                                                <%if(clas.length>0){ let j=0;%>
+                                                <tbody>
+                                                    <%for(let c of clas){
+                                                        j++ ;%>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td name="nameOfClass"><%= c.nameOfClass %></td>
+                                                        <td>
+                                                            <input type="hidden" name="classId" value="<%= c._id %>">
+                                                            <button type="button"  class="btn btn-warning notika-btn-warning" data-toggle="modal"  data-target="#editClass" data-whatever="<%= [c._id, c.nameOfClass] %>" onclick="returnRowToEdit(this)" >ویرایش</button>
+                                                            <button type="button" id ="sample"   class="btn btn-danger notika-btn-danger"  data-toggle="modal" data-target="#deleteClass" data-whatever="<%= c._id %>" onclick="returnRowToDelete(this)">حذف</button>
+                                                        </td>
+                                                    </tr>
+                                                    <%
+                                                }%>
+                                                </tbody>
+                                            <% }
+                                                %>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" >
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="modals-list mg-t-30">
+                                        <div class="modals-single">
+                                            <div class="modals-default-cl">
+                                                <div class="modal fade" id="editClass" role="dialog">
+                                                    <div class="modal-dialog modals-default">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div class="form-group" style="float: right; margin-left:4%;">
+                                                                        <input type="hidden" id="id" name="id" class="form-control" >
+                                                                        <select id="cName" name="cName"  style=" padding: 6px 12px;">
+                                                                            <option>... نام صنف</option>
+                                                                            <% if(studentYear.length>0){
+                                                                                for(sYear of studentYear){
+                                                                                        if(dpId.length>0){ 
+                                                                                            for(d of dpId){
+                                                                                            %>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name %>"><%=sYear.GraduationYear+' '+d.name %></option>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' A' %>"><%=  sYear.GraduationYear+' '+d.name+ ' A'  %></option>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' B' %>"><%=  sYear.GraduationYear+' '+d.name+ ' B'  %></option>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' C' %>"><%=  sYear.GraduationYear+' '+d.name+ ' C'  %></option>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' D' %>"><%=  sYear.GraduationYear+' '+d.name+ ' D'  %></option>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' E' %>"><%=  sYear.GraduationYear+' '+d.name+ ' E'  %></option>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' F' %>"><%=  sYear.GraduationYear+' '+d.name+ ' F'  %></option>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' G' %>"><%=  sYear.GraduationYear+' '+d.name+ ' G'  %></option>
+                                                                                            <option value="<%= sYear.GraduationYear+' '+d.name + ' H' %>"><%=  sYear.GraduationYear+' '+d.name+ ' H'  %></option>
+                                                                                 <% }
+                                                                                }
+                                                                            }
+                                                                        }%>
+                                                                        </select>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="  btn notika-add-todo" onclick="editClassData(this)" data-dismiss="modal">بلی</button>
+                                                                <button type="button" class="  btn notika-add-todo" data-dismiss="modal">خیر</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="modals-list mg-t-30">
+                                        <div class="modals-single">
+                                            <div class="modals-default-cl">
+                                                <div class="modal fade" id="deleteClass" role="dialog">
+                                                    <div class="modal-dialog modals-default">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div class="form-group">
+                                                                        <h2 class="col-form-label"><center>آیا مطمئن اید می خواهید حذف کنید؟</center></h2>
+                                                                        <input type="hidden" class="form-control" name="recipientName" id="recipientName">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="  btn notika-add-todo" onclick="postClassDelete(this)" data-dismiss="modal">بلی</button>
+                                                                <button type="button" class="  btn notika-add-todo" data-dismiss="modal">خیر</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</form>
+<script>
+$('#deleteClass').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    modal.find('.modal-body input').val(recipient)
+})
+
+$('#editClass').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    
+    var arrayData = recipient.split(',');
+    // console.log(arrayData)
+    modal.find('.modal-body #id').val(arrayData[0]);
+    modal.find('.modal-body #cName').val(arrayData[1]);
+})
+</script>
+<script src="/js/myJava.js"></script>
+<!-- Form Element area End-->
+<!-- End Realtime sts area-->
+<!-- Start Footer area-->
+    <!-- Form Element area End-->
+<!-- End Realtime sts area-->
+<!-- Start Footer area-->
+<%- include('../includes/footer.ejs')%>
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+     <!-- Data Table JS============================================ -->
+     <script src="js/data-table/jquery.dataTables.min.js"></script>
+     <script src="js/data-table/data-table-act.js"></script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

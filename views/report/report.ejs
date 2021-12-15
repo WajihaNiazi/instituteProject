@@ -1,0 +1,130 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="details.css">
+<style>
+    table tbody {
+        counter-reset: rowNumber;
+    }
+    table tbody tr {
+        counter-increment: rowNumber;
+    }
+    table tbody tr td:nth-child(8)::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+        float: right;
+    }
+</style>
+</head>
+<body>
+<%- include('../includes/header.ejs')%>  
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div style="direction:rtl" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-windows"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2><%=pageTitle%></h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+    <!-- Data Table area Start-->
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list mg-t-30">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="data-table-list">
+                                <div class="table-responsive">
+                                    <table id="data-table-basic" class="table table-striped">
+                                            <thead>
+                                                <tr >   
+                                                    <th><center>تنظیمات</center></th>
+                                                    <th><center>سال تحصیلی</center></th>
+                                                    <th><center>دیپارتمنت</center></th>
+                                                    <th><center>نمبر اساس</center></th>
+                                                    <th><center>پدر</center></th>
+                                                    <th><center>تخلص</center></th>
+                                                    <th><center>اسم</center></th>                                                
+                                                    <th><center>شماره</center></th> 
+                                                </tr>
+                                            </thead>
+                                            <%if(students.length>0){ let j=1;%>
+                                                <tbody>
+                                                    <%for( i of students){ j++%>
+                                                    <tr>                                                        
+                                                        <td>
+                                                            <center>
+                                                                <form  action="/editReport" style="display: inline;" method="POST">
+                                                                    <input type="hidden" name="studentId" value="<%=i._id%>">
+                                                                    <button type="submit" class="btn btn-warning notika-btn-warning" >ویرایش</button>   
+                                                                </form>
+                                                                <button style="display: inline;" type="button" class="btn btn-info notika-btn-info" data-toggle="modal" data-target="#myModalthree<%=i._id%>" >جزئیات</button>    
+                                                                    <form style="display: inline;" method="POST" action="/DeleteUndo">
+                                                                        <button style="display: inline;"  class="btn btn-danger notika-btn-danger" >حذف</button>
+                                                                        <input type="hidden" name="studentId" value="<%=i._id%>">
+                                                                    </form>
+                                                            </center>
+                                                        </td>
+                                                        <td name="GraduationYear"><center><%=i.GraduationYear %></center></td> 
+                                                        <td name="Department"><center><%=i.Department%></center></td>
+                                                        <td name="BaseNumber"><center><%=i.BaseNumber%></center></td> 
+                                                        <td name="FatherName"><center><%= i.FatherName %></center></td>
+                                                        <td name="LastName"><center><%= i.LastName %></center></td>
+                                                        <td name="Name"><center><%= i.Name %></center></td>
+                                                        <td><center></center></td>
+                                                    </tr>
+                                                    <%}%>
+                                                </tbody>
+                                                <%}%>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div style="direction:rtl;">
+                    <div class="row">
+                        <div class="form-example-int mg-t-15">
+                            <a href="/fullRegistration" class=" btn notika-add-todo">شهرت مکمل</a>
+                        </div><div style="clear:both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Data Table area End--> 
+<%- include('../includes/footer.ejs')%>
+<script src="/js/jquery.min.js"></script>
+</script>
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+<!-- Data Table JS============================================ -->
+<script src="js/data-table/jquery.dataTables.min.js"></script>
+<script src="js/data-table/data-table-act.js"></script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

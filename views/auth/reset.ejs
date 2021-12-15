@@ -1,0 +1,14 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body>
+    <%- include('../includes/header.ejs')%> 
+      <%=errorMessage%>
+      <form action="/reset" method="post">
+        <label for="email">email:</label>
+        <input type="email" name="email" id="email">
+        <button type="submit">submit</button>
+      </form>
+<%- include('../includes/footer.ejs')%>
+<script src="/js/jquery.min.js"></script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

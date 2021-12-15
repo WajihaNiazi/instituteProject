@@ -1,0 +1,480 @@
+<%- include('../includes/head.ejs')%>
+<link href="/css/novindatepicker.css" type="text/css" rel="stylesheet"/>
+<script src="/js/test.js"></script>
+<script src="/css/Btest.js"></script>
+<script src="/js/novindatepicker.js"></script>
+</head>
+<body>
+    <%- include('../includes/header.ejs')%> 
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div  class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="form-element-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row"><!-- form data for students -->
+                            <form enctype="multipart/form-data" class="product-form" action="/editedReport" method="post">
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="Name" id="Name"  class="form-control" placeholder=" نام  ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="LastName" id="LastName" class="form-control" placeholder=" تخلص  ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="FatherName" id="FatherName" class="form-control" placeholder=" نام پدر ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="GrandFather" id="GrandFather" class="form-control" placeholder=" نام پدرکلان ">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="Skin" id="Skin" class="form-control" placeholder=" جلد">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" id="Page" name="Page" class="form-control" placeholder=" صفحهُ ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" class="form-control"  name="Register" id="Register" placeholder=" نمبر ثبت ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" class="form-control" name="SakokNumber" id="SakokNumber" placeholder=" نمبر صکوک ">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="ClassGraduted" id="ClassGraduted" class="form-control" placeholder=" صنف فارغه مکتب">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="Year" id="Year" style="text-align: right;" class="form-control datepicker"  placeholder="سال فارغه">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text"  name="School" id="School" class="form-control" placeholder=" نام مکتب فارغه ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-map"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" type="text" name="Province" id="Province" class="form-control" placeholder=" نام ولایت ">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-house"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input  type="text" name="MainVillage" id="MainVillage" class="form-control" placeholder=" قریه اصلی  ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-house"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" class="form-control" name="MainRegion" id="MainRegion" placeholder=" ولسوالی/ناحیه اصلی">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-house"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" class="form-control" name="MainProvince" id="MainProvince" placeholder=" ولایت اصلی  ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-house"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="CurrentVillage" id="CurrentVillage" class="form-control" placeholder=" قریه فعلی">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-house"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="CurrentRegion" id="CurrentRegion" class="form-control" placeholder=" ولسوالی/ناحیه فعلی  ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-house"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" class="form-control" name="CurrentProvince" id="CurrentProvince" placeholder=" ولایت فعلی   ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="FatherJob" id="FatherJob" class="form-control" placeholder=" پیشه پدر ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" class="form-control" name="FatherJoblocation" id="FatherJoblocation" placeholder=" محل وظیفه پدر ">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="BirthYear" id="BirthYear" style="text-align: right;" class="form-control datepicker" placeholder="سال تولد">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="KonkorID" id="KonkorID" class="form-control" placeholder="  آی دی کانکور  ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="number" name="KonkorScore" id="KonkorScore" class="form-control" placeholder=" نمره کانکور">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text"  style="border:none; outline: none; border-radius:none; border-bottom: gray 1px solid"  name="PhoneNumber" id="PhoneNumber" class="form-control" placeholder=" شماره تماس محصل ">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="RelationContactNumber" id="RelationContactNumber" class="form-control" placeholder=" شماره تماس اقارب ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="EnrollDate" id="EnrollDate" style="text-align: right;" class="form-control datepicker" placeholder="  تاریخ شمول انستیوت " >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="number" name="BaseNumber" id="BaseNumber" class="form-control" placeholder=" نمبر اساس ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="number" name="RegisterWrittenNumber" id="RegisterWrittenNumber" class="form-control" placeholder=" نمبر مکتوب شمولیت  ">
+                                                </div>
+                                            </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="Nationality" id="Nationality" class="form-control" placeholder=" ملیت  ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div  class="chosen-select-act fm-cmp-mg">
+                                                    <select name="Department" id="Department" class="chosen" >
+                                                        <option value="">&nbsp;&nbsp;&nbsp;دیپارتمنت</option>
+                                                        <% if(department.length>0){ 
+                                                            for(dp of department){
+                                                                %>
+                                                            <option value="<%=dp.name%>">&nbsp;&nbsp;&nbsp;<%=dp.name%></option>
+                                                            <% }
+                                                        }%>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div  class="chosen-select-act fm-cmp-mg">
+                                                    <select name="semster" id="semster" class="chosen" >
+                                                        <option value="">&nbsp;&nbsp;&nbsp;سمستر </option>
+                                                        <option >&nbsp;&nbsp;&nbsp;سمستر اول</option>
+                                                        <option >&nbsp;&nbsp;&nbsp;سمستر دوم</option>   
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                <div class="form-group ic-cmp-int">
+                                                    <div class="form-ic-cmp">
+                                                        <i class="notika-icon notika-support"></i>
+                                                    </div>
+                                                    <div  class="chosen-select-act fm-cmp-mg">
+                                                        <select name="GraduationYear" id="GraduationYear" class="chosen" >
+                                                           <option value="">&nbsp;&nbsp;&nbsp;سال تحصیلی</option>
+                                                           <option >&nbsp;&nbsp;&nbsp;سیزدهم</option>
+                                                           <option >&nbsp;&nbsp;&nbsp;چهاردهم</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;">
+                                    <div class="row">
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="form-control" style="border-top:none; border-left:none;border-right:none;box-shadow:none">
+                                                    <label >لیله<input type="radio" name="Lunch" id="Lunch" class="i-checks"> <i></i></label>
+                                                    <label>نهاری<input type="radio" name="Lunch" id="Lunch"class="i-checks"> <i></i> </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="number" name="WrittenNumber" id="WrittenNumber" class="form-control" placeholder=" نمبر مکتوب لیلیه/نهاری ">
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="file"  name="image" id="image" class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div style="float:right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                <div class="form-ic-cmp">
+                                                    <i class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="chosen-select-act fm-cmp-mg">
+                                                <select id="nameOfClass" name="nameOfClass" class="chosen">
+                                                    <option>نام صنف...</option>
+                                                    <%  if(classes.length>0){ 
+                                                        for(c of classes){%>
+                                                        <option value="<%= c.nameOfClass %>"><%= c.nameOfClass %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div style="direction:rtl;margin-right:2%;">
+                                    <div class="row" >
+                                        <div class="form-example-int mg-t-15">
+                                            <input type="hidden" name="studentId" value="<%= student._id%>">
+
+                                            <button  type="submit" class="  btn notika-add-todo">ثبت</button>
+                                        </div><div style="clear:both"></div>
+                                    </div>
+                                </div>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../includes/footer.ejs')%>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/novindatepicker.js"></script>
+<script src="/js/data.js"></script>
+<script> document.querySelectorAll('.datepicker').novinDatePicker();</script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

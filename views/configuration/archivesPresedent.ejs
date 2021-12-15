@@ -1,0 +1,132 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top">
+	<!-- BEGIN HEADER -->
+    <%- include('../includes/header.ejs')%>
+	<!-- END HEADER -->
+	<!-- BEGIN CONTAINER -->
+	<div id="container" class="row-fluid">
+        <!-- BEGIN SIDEBAR -->
+        <%- include('../includes/sidebar.ejs')%>
+      <!-- END SIDEBAR -->
+      <!-- BEGIN PAGE -->  
+      <div id="main">
+         <!-- BEGIN PAGE CONTAINER-->
+         <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->   
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   <div id="theme-change" class="hidden-phone">
+                       <i class="icon-cogs"></i>
+                        <span class="settings">
+                            <span class="text">Theme:</span>
+                            <span class="colors">
+                                <span class="color-default" data-style="default"></span>
+                                <span class="color-gray" data-style="gray"></span>
+                                <span class="color-purple" data-style="purple"></span>
+                                <span class="color-navy-blue" data-style="navy-blue"></span>
+                            </span>
+                        </span>
+                   </div>
+                   <!-- END THEME CUSTOMIZER-->
+                  	<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        انستیتوت حسابداری
+                    </h3>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+                        </li>
+                        <li>
+                            <a href="/archivesPresedent"><%=pageTitle%></a> <span class="divider">&nbsp;</span>
+                        </li>
+                        <li class="pull-right search-wrap">
+                            <form class="hidden-phone">
+                                <div class="search-input-area">
+                                    <input id=" " class="search-query" type="text" placeholder="جستجو...">
+                                    <i class="icon-search"></i>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row-fluid">
+               <div class="span12">
+                   <div class="mainDiv">
+                        <div class="container">
+                            <div class="header">
+                                    <div class="HeadLines">
+                                            <center>
+                                                <p>وزارت معارف</p>
+                                                <p>معینیت تعلیمات تخنیکی و مسلکی</p>
+                                                <p>موسسه تعلیمی(مسلکی اداره و حسابداری هرات)</p>
+                                                <p>شقه ضوابط حاضری صنف()</p>
+                                                <p>استاد رهنا()رشته ()</p>
+                                                <p>تاریخ / / </p>
+                                            </center>
+                                                
+                                          </div>
+                                          <img style="float:left;  margin:-13% -10% 0%  4%" id="LeftImage" width="100px" height="100px" src="/img/x.png">
+                                            <div style="clear:both"></div>
+                                          <img style=" margin:-17% 0% 0%  0%" id="RightImage" width="100px" height="100px" src="/img/x.png">
+                                          <div style="clear:both"></div>
+                                        </div>
+                            </div>
+                            <div class="TableBody">
+                                <table id="table" border="2" style="direction:ltr">
+                                <thead>
+                                    <tr>
+                                        <td rowspan="2">ملاحظات</td>
+                                        <td colspan="5" >امتحان سمستر دوم</td>
+                                        <td rowspan="2">نمبر اساس</td>
+                                        <td  colspan="2">شهرت</td>
+                                        <td rowspan="2">شماره</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مجموع ساعات تعلیمی</td>
+                                        <td>رخصت</td>
+                                        <td>مریض</td>
+                                        <td>غیر حاضر</td>
+                                        <td>حاضر</td>
+                                        <td>ولد</td>
+                                        <td>اسم</td>
+                                    </tr>
+                                </thead>
+                            <tbody>
+                                <!-- shomare 1 -->
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>                                                              
+                            </tbody>
+                        </table>
+                    </div>
+                    <center id="finalPara">قرار شرح فوق ضوابط حاضری حسب توحیدی سمستری ترتیب گردیده صحت است</center>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    <!-- END PAGE CONTENT-->
+</div>
+<!-- END PAGE CONTAINER-->
+</div>
+<!-- END PAGE -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<%- include('../includes/end.ejs')%>

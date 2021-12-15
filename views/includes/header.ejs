@@ -1,0 +1,130 @@
+<div class="header-top-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="logo-area"><img src="img/logo/logo.png" alt="" />
+                </div>
+            </div>
+            <%if(isAuthenticated){%>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                        <form action="/logout" method="post">
+                            <button type="submit">خروج</button>
+                        </form>
+                    </div>
+                </div>
+            <%}else{%>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                        <a href="/login">ورود</a>
+                    </div>
+                </div> 
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                        <a href="/signup">ایجاد حساب</a>
+                    </div>
+                </div>
+            <%}%>
+        </div>
+    </div>
+</div>
+<!-- End Header Top Area -->
+<!-- Mobile Menu start -->
+<div class="mobile-menu-area">
+    <div class="container">
+        <div class="row">
+            <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="mobile-menu">
+                    <nav  id="dropdown">
+                        <ul class="mobile-menu-nav">
+                            <li><a href="/index">صفحهء اصلی</a></li>
+                            <%if(isAuthenticated){%>
+                            <li><a data-toggle="collapse" data-target="#Charts" href="#">شاگردان</a>
+                                <ul class="collapse dropdown-header-top">
+                                    <li><a href="/getInfo">فورم راجستر</a></li>
+                                    <li><a href="/getDepartment"> فورم راجستر دیپارتمنت</a></li>
+                                    <li><a href="/report">گزارشات</a></li>
+                                    <li><a href="/addClass">صنف</a></li>
+                                    <li><a href="/classify">صنف بندی شاگردان</a></li>
+                                    <li><a href="/subjectsForm">ثبت مضامین</a></li>
+                                    <li><a href="/printcart">کارت</a></li>
+                                </ul>
+                            </li>
+                            <li><a data-toggle="collapse" data-target="#demoevent" href="#">تقسیم اوقات</a>
+                                <ul id="demoevent" class="collapse dropdown-header-top">
+                                    <li><a href="/scheduleForm">ثبت تقسیم اوقات</a></li>
+                                    <li><a href="/studentSchedule">تقسیم اوقات صنوف و شاگردان</a></li>
+                                    <li><a href="/teacherSchedule">تقسیم اوقات استادان</a></li>
+                                    <li><a href="/teacherInformation">معلومات استادان</a></li>
+                                </ul>
+                            </li>
+                            <li><a data-toggle="collapse" data-target="#democrou" href="#">بخش کارمندان یا مالی</a>
+                                <ul id="democrou" class="collapse dropdown-header-top">
+                                        <li><a href="/getStaff">ثبت کارمند</a></li>
+                                </ul>
+                            </li>
+                            <li><a data-toggle="collapse" data-target="#demodepart" href="#">تجهیزات</a>
+                                <ul id="demodepart" class="collapse dropdown-header-top">
+                                    <li><a href="/FS5">فورم ف س 5</a></li>
+                                </ul>
+                            </li>
+                            <%}%>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Mobile Menu end -->
+<!-- Main Menu area start-->
+<div class="main-menu-area mg-tb-40">
+    <div class="container">
+        <div   class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div style="direction:rtl;float:right">
+                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                        <%if(isAuthenticated){%>
+                        <li><a data-toggle="tab" href="#equipmentsTab"><i class="notika-icon notika-windows"></i>  تجهیزات</a></li>
+                        <li><a data-toggle="tab" href="#staffTab"><i class="notika-icon notika-edit"></i>کارمندان</a></li>
+                        <li><a data-toggle="tab" href="#scheduleTab"><i class="notika-icon notika-form"></i> تقسیم اوقات</a></li>
+                        <li><a data-toggle="tab" href="#studentsTab"><i class="notika-icon notika-edit"></i> شاگردان</a></li>
+                        <%}%>
+                        <li><a href="/index"><i class="notika-icon notika-house"></i> صفحه اصلی</a></li>
+                    </ul>
+                </div><div style="clear:both"></div>
+                <div style="direction:rtl;"  class="tab-content custom-menu-content">
+                    <div id="studentsTab" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="/getInfo">فورم راجستر</a></li>
+                            <li><a href="/report">گزارشات</a></li>
+                            <li><a href="/getDepartment"> فورم راجستر دیپارتمنت</a></li>
+                            <li><a href="/addClass">صنف</a></li>
+                            <li><a href="/classify">صنف بندی شاگردان</a></li>
+                            <li><a href="/subjectsForm">ثبت مضامین</a></li>
+                            <li><a href="/printcart">کارت</a></li>
+                        </ul>
+                    </div>
+                    <div id="scheduleTab" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="/scheduleForm">ثبت تقسیم اوقات</a></li>
+                            <li><a href="/studentSchedule">تقسیم اوقات صنوف و شاگردان</a></li>
+                            <li ><a href="/teacherSchedule">تقسیم اوقات استادان</a></li>
+                            <li ><a href="/teacherInformation">معلومات استادان</a></li>
+                        </ul>
+                    </div>
+                    <div id="staffTab" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="/getStaff">ثبت کارمند</a></li>
+                        </ul>
+                    </div>
+                    <div id="equipmentsTab" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="/FS5" >فورم ف س 5</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

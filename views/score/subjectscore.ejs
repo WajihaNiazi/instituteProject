@@ -1,0 +1,182 @@
+<%- include('../includes/head.ejs')%>
+<link href="/css/novindatepicker.css" type="text/css" rel="stylesheet"/>
+<script src="/js/test.js"></script>
+<script src="/css/Btest.js"></script>
+<script src="/js/novindatepicker.js"></script>
+<style>
+       table{
+            direction: rtl
+        }
+        .verticalText
+       { 
+           transform: rotate(-90deg); 
+           -moz-transform: rotate(-90deg); 
+          height: 70px;
+          text-align: center;
+
+       };
+</style>
+
+</head>
+<body>
+    <%- include('../includes/header.ejs')%> 
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <form class="product-form" action="/filter" method="post">
+        <div class="form-element-area">
+            <div class="container">
+                <div class="row"> 
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list">
+                            <div style="direction:rtl;">
+                                <div style="float:right" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div  class="chosen-select-act fm-cmp-mg">
+                                            <select name="subject" id="subject" class="chosen" >
+                                            <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;مضمون </option>
+                                                <% if(Subjects.length>0){ 
+                                                    for(sub of Subjects){
+                                                        %>
+                                                    <option value="<%=sub.name%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=sub.name%></option>
+                                                    <% }
+                                                }%>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float:right" class="col-lg-2 col-md-2 col-sm-2 col-xs-12" >
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" name="year" id="year" style="text-align: right;" class="form-control datepicker" placeholder="سال" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float:right" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div  class="chosen-select-act fm-cmp-mg">
+                                            <select name="semester" id="semester" class="chosen" >
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سمستر</option>
+                                                <option value="اول"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;اول</option>
+                                                <option value="دوم">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;دوم</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float:right" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div  class="chosen-select-act fm-cmp-mg">
+                                                <select name="classes" id="classes" class="chosen" >
+                                                    <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;صنف</option>
+                                                    <% if(classify.length>0){ 
+                                                        for(let cla of classify){
+                                                            %>
+                                                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= cla.nameOfClass%></option>
+                                                    <%}}%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div style="float:right" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                    <div class="form-example-int">
+                                        <button  type="submit" class="  btn notika-add-todo">ثبت</button>
+                                    </div><div style="clear:both"></div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+          
+    </form>
+    <form class="product-form" action="/subjectscore" method="post">
+        <div class="form-element-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list">
+                            <div style="direction:rtl;">
+                                <div class="row">
+                                        <table  border="2">
+                                                <!-- table has 3 rows -->
+                                                    <tr>  
+                                                        <td rowspan="2" class="verticalText">شماره</td>
+                                                        <td colspan="2"><center>شهرت</center></td>
+                                                        <td rowspan="2" class="verticalText">نمبر اساس</td> 
+                                                        <td rowspan="2" style="width: 20px;" class="verticalText">مضمون</td>  
+                                                    </tr>
+                                                    <tr>
+                                                        <td>اسم</td>
+                                                        <td>ولد</td> 
+                                                        <!-- create for subject <td></td> -->
+                                                        
+                                                    </tr>
+                                                    <%if(students.length > 0){
+                                                        let j=1;
+                                                        for(let student of students ){
+                                                            %>
+                                                            <tr>
+                                                                <!-- from third row the number of collumn  should be 20 -->
+                                                                <td><%=j++%></td>
+                                                                <td><%=student.Name%></td>
+                                                                <td><%=student.FatherName%></td>
+                                                                <td><%=student.BaseNumber%></td>
+                                                                <input type="hidden" name="id" id="_id" value="<%= student._id %>">
+                                                                <td><input  style="width: 100%;"  name="score" type="number"></td>
+                                                            </tr>
+                                                    <%}}%>
+                                                    
+                                        </table>
+                                </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                <div class="row">
+                                    <div class="form-example-int mg-t-15">
+                                        <button  type="submit" class="  btn notika-add-todo">ثبت</button>
+                                    </div><div style="clear:both"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <%- include('../includes/footer.ejs')%>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/novindatepicker.js"></script>
+    <script> document.querySelectorAll('.datepicker').novinDatePicker();</script>
+<%- include('../includes/end.ejs')%>
+  

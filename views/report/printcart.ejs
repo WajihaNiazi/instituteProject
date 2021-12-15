@@ -1,0 +1,98 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body>
+    <%- include('../includes/header.ejs')%> 
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+      <!-- Form Element area Start-->
+      <div class="form-element-area">
+            <div class="container" >
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list mg-t-30">
+                            <div class="row" id="main">
+                                <%if(students.length>0){
+                                    for(student of students){%>
+                                   <div  id="cart" style="direction:rtl; padding: 5px; border:black solid 2px;width: 50%; float: right;">
+                                        <div style="width:45%;box-sizing: border-box; float:right;padding: 5px">
+                                            <p>نمبر:<%=student.BaseNumber%></p>
+                                            <p>نام:<%=student.Name%></p>
+                                            <p>ولد:<%=student.FatherName%></p>
+                                            <p>صنف:<%=student.GraduationYear%></p>
+                                            <p>شماره تماس:<%=student.PhoneNumber%></p>
+                                        </div>
+                                        <div style="width:45; box-sizing: border-box;float:left;padding: 5px"> 
+                                            <%if(student.image===""){%>
+                                                <img style="width:200px; height: 100px"  src="/images/6.jpg"  alt="">
+
+                                            <%}else{%>
+                                                <img style="width:200px; height:100px" src="<%=student.image%>" alt="">
+                                            <%}%>
+                                        </div>
+                                </div><div style="clear:both"></div><br>
+                                <% }}%>
+                                <section style="direction: rtl;">
+                                    <% if (currentPage !== 1 && previousPage !== 1) { %>
+                                        <a href="?page=1">1</a>
+                                    <% } %>
+                                    <% if (haspreviousPage) { %>
+                                        <a href="?page=<%= previousPage %>"><%= previousPage %></a>
+                                    <% } %>
+                                    <a href="?page=<%= currentPage %>" style="font-weight: bold; color: black;"><%= currentPage %></a>
+                                    <% if (hasnextPage) { %>
+                                        <a href="?page=<%= nextPage%>"><%= nextPage %></a>
+                                    <% } %>
+                                    <% if (lastPage !== currentPage && nextPage !== lastPage) { %>
+                                        <a href="?page=<%= lastPage %>"><%= lastPage %></a>
+                                    <% } %>
+                                </section>
+                            </div>
+                            <button onclick="printPage()" class="btnPrint btn notika-add-todo">چاپ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%- include('../includes/footer.ejs')%>
+    <script src="/js/jquery.min.js"></script>
+
+
+ <script>
+    function printPage() {
+    var content = document.getElementById("main").innerHTML;
+    var css = "", i, j, c = document.getElementById("main").cloneNode(true);
+    for (i = 0; i < c.childNodes.length; i++) {
+        if (c.childNodes[i].nodeType == 1 && c.childNodes[i].getAttribute("id") == "main") {
+            c.removeChild(c.childNodes[i]);
+            content = c.innerHTML;
+            break;
+        }
+    }
+    var head = document.getElementsByTagName("head")[0].innerHTML;
+
+    var myWindow=window.open('','','');
+    myWindow.document.write("<html><head>"+head+"<style>body{padding:15px;}@media print {.printbtn {display:none;}}</style></head><body><button class='printbtn' onclick='window.print()'>چاپ</button><br><br>"+content+"</body></html>");
+}
+</script>
+<%- include('../includes/end.ejs')%>

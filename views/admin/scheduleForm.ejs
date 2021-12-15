@@ -1,0 +1,764 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+    #data-table-basic tbody {
+        counter-reset: rowNumber;
+    }
+    
+    #data-table-basic tbody tr {
+    counter-increment: rowNumber;
+    }
+    
+    #data-table-basic tbody tr td:nth-child(1)::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+    }
+    .tableData{
+        float:right;
+        direction: rtl;
+        text-align: right;
+        width: 50%;
+        border-collapse:collapse;
+        border:none;
+        box-sizing: border-box;
+      }
+      .tableData thead th{
+        padding:4px 8px;
+        font-size: 16px;
+        text-align: right;
+      }
+      .tableData thead td{
+          font-size: 18px;
+          font-weight: bold;
+          color: black;
+          text-shadow: 0px 0px 2px lightblue;
+      }
+      .selectDay{
+          width:100%;
+          border:none;
+          padding:8px 12px;
+          outline: none;
+      }
+      .inputs{
+          padding:4px 8px;
+          background: white;
+          width:100%;
+          border:none;
+      }
+</style>
+</head>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+        <%- include('../includes/header.ejs')%> 
+    <!-- Main Menu area End-->
+    <!-- Start Status area -->
+    <!-- Main Menu area End-->
+    <!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+<!-- Form Element area Start-->
+    <div class="form-element-area">
+        <div class="container">
+            <div class="row" >
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row" style="margin-right: 2%;">
+                            <form action="/scheduleForm" method="post">
+                                <div style="float: right;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="nk-int-mk sl-dp-mn">
+                                        <center><h2>نام صنف</h2></center>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select id="chosenClass" name="chosenClass" class="chosen">
+                                            <option>نام صنف...</option>
+                                        <%  if(clas.length>0){ 
+                                            for(cl of clas){
+                                                %>
+                                            <option value="<%=cl.nameOfClass %>"><%=cl.nameOfClass %></option>
+                                            <% }
+                                        }%>
+                                        </select>
+                                    </div>
+                                </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <table border="2" class="tableData">
+                                    <thead>
+                                        <tr>
+                                            <td name="day" style="width: 100%;"colspan="3">
+                                                <select class="selectDay" id="day" name="day" style="padding: 10px;">
+                                                    <option>شـــنبه</option>
+                                                    <option>یکشـــنبه</option>
+                                                    <option>دو شـــنبه</option>
+                                                    <option>سه شـــنبه</option>
+                                                    <option>چهار شـــنبه</option>
+                                                    <option>پنج شـــنبه</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 20%;"><bold><center>ساعت درسی</center></bold></th>
+                                            <th style="width: 40%;"><bold>مضمون</bold></th>
+                                            <th style="border-left: solid 1px transparent; width: 40%;"><bold>استاد</bold></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr>
+                                            <td style="background:lightblue; width: 20%;"><center>ساعت 1</center></td>
+                                            <td name="firstHourSubject" style="width: 40%;">
+                                                <select class="chosen" id="firstHourSubject" name="firstHourSubject">
+                                                    <option value="">مضمون...</option>
+                                                    <%  if(subjects.length>0){ 
+                                                    for(sub of subjects){
+                                                        if(sub.name=='مضمون...')
+                                                        continue;
+                                                        %>
+                                                    <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                            <td name="firstHourTeacher" style="border-left: solid 1px transparent; width: 40%;">
+                                                <select class="chosen" id="firstHourTeacher" name="firstHourTeacher">
+                                                    <option value="">استاد...</option>
+                                                    <%  if(staff.length>0){ 
+                                                    for(s of staff){
+                                                        %>
+                                                    <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:lightblue; width: 20%;"><center>ساعت 2</center></td>
+                                            <td name="secondHourSubject" style="width: 40%;">
+                                                <select class="chosen" id="secondHourSubject" name="secondHourSubject">
+                                                    <option value="">مضمون...</option>
+                                                    <%  if(subjects.length>0){ 
+                                                    for(sub of subjects){
+                                                        %>
+                                                    <option  value="<%= sub.name %>"><%= sub.name %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                            <td name="secondHourTeacher" style="border-left: solid 1px transparent; width: 40%;">
+                                                <select class="chosen" id="secondHourTeacher" name="secondHourTeacher">
+                                                    <option value="">استاد...</option>
+                                                    <%  if(staff.length>0){ 
+                                                    for(s of staff){
+                                                        %>
+                                                    <option  value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:lightblue; width: 20%;"><center>ساعت 3</center></td>
+                                            <td name="thirdHourSubject" style="width: 40%;">
+                                                <select class="chosen" id="thirdHourSubject" name="thirdHourSubject">
+                                                    <option value="">مضمون...</option>
+                                                    <%  if(subjects.length>0){ 
+                                                    for(sub of subjects){
+                                                        %>
+                                                    <option  value="<%= sub.name %>"><%= sub.name %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                            <td name="thirdHourTeacher" style="border-left: solid 1px transparent; width: 40%;">
+                                                <select class="chosen" id="thirdHourTeacher" name="thirdHourTeacher">
+                                                    <option value="">استاد...</option>
+                                                    <%  if(staff.length>0){ 
+                                                    for(s of staff){
+                                                        %>
+                                                    <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:lightblue; width: 20%;"><center>ساعت 4</center></td>
+                                            <td name="fourthHourSubject" style="width: 40%;">
+                                                <select class="chosen" id="fourthHourSubject" name="fourthHourSubject">
+                                                    <option value="">مضمون...</option>
+                                                    <%  if(subjects.length>0){ 
+                                                    for(sub of subjects){
+                                                        %>
+                                                    <option  value="<%= sub.name %>"><%= sub.name %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                            <td name="fourthHourTeacher" style="border-left: solid 1px transparent; width: 40%;">
+                                                <select class="chosen" id="fourthHourTeacher" name="fourthHourTeacher">
+                                                    <option value="">استاد...</option>
+                                                    <%  if(staff.length>0){ 
+                                                    for(s of staff){
+                                                        %>
+                                                    <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:lightblue; width: 20%;"><center>ساعت 5</center></td>
+                                            <td name="fifthHourSubject" style="width: 40%;">
+                                                <select class="chosen" id="fifthHourSubject" name="fifthHourSubject" >
+                                                    <option value="">مضمون...</option>
+                                                    <%  if(subjects.length>0){ 
+                                                    for(sub of subjects){
+                                                        %>
+                                                    <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                            <td name="fifthHourTeacher" style="border-left: solid 1px transparent; width: 40%;">
+                                                <select class="chosen" id="fifthHourTeacher" name="fifthHourTeacher">
+                                                    <option value="">استاد...</option>
+                                                    <%  if(staff.length>0){ 
+                                                    for(s of staff){
+                                                        %>
+                                                    <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:lightblue; width: 20%;"><center>ساعت 6</center></td>
+                                            <td name="sixthHourSubject" style="width: 40%;">
+                                                <select class="chosen" id="sixthHourSubject" name="sixthHourSubject">
+                                                    <option value="">مضمون...</option>
+                                                    <%  if(subjects.length>0){ 
+                                                    for(sub of subjects){
+                                                        %>
+                                                    <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                            <td name="sixthHourTeacher" style="border-left: solid 1px transparent; width: 40%;">
+                                                <select class="chosen" id="sixthHourTeacher" name="sixthHourTeacher">
+                                                    <option value="">استاد...</option>
+                                                    <%  if(staff.length>0){ 
+                                                    for(s of staff){
+                                                        %>
+                                                    <option  value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                    <% }
+                                                }%>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="direction: rtl;">
+                                <div class="row">
+                                    <div class="form-example-int mg-t-15">
+                                        <button type="button" onclick="postScheduleData(this)" class="btn notika-add-todo">ثبت</button>
+                                    </div><div style="clear:both"></div>
+                                </div>
+                            </div>
+                        </form>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="data-table-list">
+                                        <div class="table-responsive">
+                                            <table id="data-table-basic"  style=" direction:rtl; text-align: center;"  class="table table-striped dataTable no-footer" role="grid" aria-describedby="data-table-basic_info">
+                                                <thead>
+                                                    <tr>
+                                                        <th><center>شماره</center></th>
+                                                        <th><center>نام صنف</center></th>
+                                                        <th><center>روز</center></th>
+                                                        <th><center>تنظیمات</center></th>
+                                                    </tr>
+                                                </thead>
+                                                <%if(schedule.length>0){ let j=0;%>
+                                                <tbody>
+                                                    <%for(let s of schedule){
+                                                        j++ ;%>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td name="chosenClass"><%= s.chosenClass %></td>
+                                                        <td name="day"><%= s.day %></td>
+                                                       <td>
+                                                            <input type="hidden" name="scheduleId" value="<%= s._id %>">
+                                                            <button type="button"  class="btn btn-info notika-btn-info" data-toggle="modal"  data-target="#viewSchedule" data-whatever="<%= [s._id, s.chosenClass, s.day,s.firstHourSubject,s.firstHourTeacher,s.secondHourSubject,s.secondHourTeacher,s.thirdHourSubject,s.thirdHourTeacher,s.fourthHourSubject,s.fourthHourTeacher,s.fifthHourSubject,s.fifthHourTeacher,s.sixthHourSubject,s.sixthHourTeacher] %>" >نمایش</button>
+                                                            <button type="button"  class="btn btn-warning notika-btn-warning" data-toggle="modal"  data-target="#editSchedule" data-whatever="<%= [s._id, s.chosenClass, s.day,s.firstHourSubject,s.firstHourTeacher,s.secondHourSubject,s.secondHourTeacher,s.thirdHourSubject,s.thirdHourTeacher,s.fourthHourSubject,s.fourthHourTeacher,s.fifthHourSubject,s.fifthHourTeacher,s.sixthHourSubject,s.sixthHourTeacher] %>" onclick="returnRowToEdit(this)" >ویرایش</button>
+                                                            <button type="button" id ="sample"   class="btn btn-danger notika-btn-danger"  data-toggle="modal" data-target="#deleteSchedule" data-whatever="<%= s._id %>" onclick="returnRowToDelete(this)">حذف</button>
+                                                        </td>
+                                                    </tr>
+                                                    <%}%>
+                                                </tbody>
+                                                <% } %>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" >
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="modals-list mg-t-30">
+                                            <div class="modals-single">
+                                                <div class="modals-default-cl">
+                                                    <div class="modal fade" id="viewSchedule" role="dialog">
+                                                        <div class="modal-dialog modals-default">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form>
+                                                                        <div class="form-group">
+                                                                            <input type="hidden" id="scheduleId" name="scheduleId" class="form-control" >
+                                                                            <input class="inputs" type="text" name="EchosenClass" id="EchosenClass" style="direction: rtl; font-weight: bold; font-size: 18px;" disabled>
+                                                                         <br>
+                                                                            <br>
+                                                                            <table border="2" style="width:100%;" class="tableData">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <td style="width: 100%;" colspan="3">
+                                                                                                <input type="text" name="day" id="day" class="inputs" disabled>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th style="width: 20%;"><bold><center>ساعت درسی</center></bold></th>
+                                                                                        <th style="width: 40%; border-top:solid 1px transparent;"><bold>مضمون</bold></th>
+                                                                                        <th style="border-left: solid 1px transparent; border-top:solid 1px transparent; width: 40%;"><bold>استاد</bold></th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody >
+                                                                                    <tr>
+                                                                                        <td style="background:lightblue; width: 20%;"><center>ساعت 1</center></td>
+                                                                                        <td style="width: 40%;">
+                                                                                            <input type="text" name="firstHourSubject" id="firstHourSubject" class="inputs" disabled>
+                                                                                        </td>
+                                                                                        <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                            <input type="text" name="firstHourTeacher" id="firstHourTeacher" class="inputs" disabled>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="background:lightblue; width: 20%;"><center>ساعت 2</center></td>
+                                                                                        <td style="width: 40%;">
+                                                                                                <input type="text" name="secondHourSubject" id="secondHourSubject" class="inputs" disabled>
+                                                                                        </td>
+                                                                                        <td  style="border-left: solid 1px transparent; width: 40%;">
+                                                                                                <input type="text" name="secondHourTeacher" id="secondHourTeacher" class="inputs"disabled>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="background:lightblue; width: 20%;"><center>ساعت 3</center></td>
+                                                                                        <td  style="width: 40%;">
+                                                                                                <input type="text" name="thirdHourSubject" id="thirdHourSubject" class="inputs" disabled>
+                                                                                        </td>
+                                                                                        <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                            <input type="text" name="thirdHourTeacher" id="thirdHourTeacher" class="inputs" disabled>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="background:lightblue; width: 20%;"><center>ساعت 4</center></td>
+                                                                                        <td  style="width: 40%;">
+                                                                                            <input type="text" name="fourthHourSubject" id="fourthHourSubject" class="inputs" disabled>
+                                                                                        </td>
+                                                                                        <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                                <input type="text" name="fourthHourTeacher" id="fourthHourTeacher" class="inputs"disabled>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="background:lightblue; width: 20%;"><center>ساعت 5</center></td>
+                                                                                        <td style="width: 40%;">
+                                                                                            <input type="text" name="fifthHourSubject" id="fifthHourSubject" class="inputs" disabled>
+                                                                                        </td>
+                                                                                        <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                                <input type="text" name="fifthHourTeacher" id="fifthHourTeacher" class="inputs" disabled>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="background:lightblue; width: 20%;"><center>ساعت 6</center></td>
+                                                                                        <td style="width: 40%;">
+                                                                                                <input type="text" name="sixthHourSubject" id="sixthHourSubject" class="inputs" disabled>
+                                                                                        </td>
+                                                                                        <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                            <input type="text" name="sixthHourTeacher" id="sixthHourTeacher" style="border: none; width: 100%; background: white; padding: 4px 8px;" disabled>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row" >
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="modals-list mg-t-30">
+                                        <div class="modals-single">
+                                            <div class="modals-default-cl">
+                                                <div class="modal fade" id="editSchedule" role="dialog">
+                                                    <div class="modal-dialog modals-default">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" id="scheduleId" name="scheduleId" class="form-control" >
+                                                                            <select id="EchosenClass" name="EchosenClass">
+                                                                                <option value="">نام صنف...</option>
+                                                                            <%  if(clas.length>0){ 
+                                                                                for(cl of clas){
+                                                                                    %>
+                                                                                <option value="<%=cl.nameOfClass %>"><%=cl.nameOfClass %></option>
+                                                                                <% }
+                                                                            }%>
+                                                                            </select>
+                                                                        <br>
+                                                                        <br>
+                                                                        <table border="2" style="width:100%;" class="tableData">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <td style="width: 100%;" colspan="3">
+                                                                                        <select style="width: 100%;" id="day" name="day" style="padding: 10px;">
+                                                                                        <option>شـــنبه</option>
+                                                                                        <option>یکشـــنبه</option>
+                                                                                        <option>دو شـــنبه</option>
+                                                                                        <option>سه شـــنبه</option>
+                                                                                        <option>چهار شـــنبه</option>
+                                                                                        <option>پنج شـــنبه</option>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th style="width: 20%;"><bold><center>ساعت درسی</center></bold></th>
+                                                                                    <th style="width: 40%; border-top:solid 1px transparent;"><bold>مضمون</bold></th>
+                                                                                    <th style="border-left: solid 1px transparent; border-top:solid 1px transparent; width: 40%;"><bold>استاد</bold></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody >
+                                                                                <tr>
+                                                                                    <td style="background:lightblue; width: 20%;"><center>ساعت 1</center></td>
+                                                                                    <td style="width: 40%;">
+                                                                                        <select style="width: 100%;"  id="firstHourSubject" name="firstHourSubject">
+                                                                                            <option value="">مضمون...</option>
+                                                                                            <%  if(subjects.length>0){ 
+                                                                                            for(sub of subjects){
+                                                                                                %>
+                                                                                            <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                        <select style="width: 100%;" id="firstHourTeacher" name="firstHourTeacher">
+                                                                                            <option value="">استاد...</option>
+                                                                                            <%  if(staff.length>0){ 
+                                                                                            for(s of staff){
+                                                                                                %>
+                                                                                            <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="background:lightblue; width: 20%;"><center>ساعت 2</center></td>
+                                                                                    <td style="width: 40%;">
+                                                                                        <select style="width: 100%;" id="secondHourSubject" name="secondHourSubject">
+                                                                                            <option value="">مضمون...</option>
+                                                                                            <%  if(subjects.length>0){ 
+                                                                                            for(sub of subjects){
+                                                                                                %>
+                                                                                            <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td  style="border-left: solid 1px transparent; width: 40%;">
+                                                                                        <select style="width: 100%;" id="secondHourTeacher" name="secondHourTeacher">
+                                                                                            <option value="">استاد...</option>
+                                                                                            <%  if(staff.length>0){ 
+                                                                                            for(s of staff){
+                                                                                                %>
+                                                                                            <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="background:lightblue; width: 20%;"><center>ساعت 3</center></td>
+                                                                                    <td  style="width: 40%;">
+                                                                                        <select style="width: 100%;" id="thirdHourSubject" name="thirdHourSubject">
+                                                                                            <option value="">مضمون...</option>
+                                                                                            <%  if(subjects.length>0){ 
+                                                                                            for(sub of subjects){
+                                                                                                %>
+                                                                                            <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                        <select style="width: 100%;" id="thirdHourTeacher" name="thirdHourTeacher">
+                                                                                            <option value="">استاد...</option>
+                                                                                            <%  if(staff.length>0){ 
+                                                                                            for(s of staff){
+                                                                                                %>
+                                                                                            <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="background:lightblue; width: 20%;"><center>ساعت 4</center></td>
+                                                                                    <td  style="width: 40%;">
+                                                                                        <select style="width: 100%;" id="fourthHourSubject" name="fourthHourSubject">
+                                                                                            <option value="">مضمون...</option>
+                                                                                            <%  if(subjects.length>0){ 
+                                                                                            for(sub of subjects){
+                                                                                                %>
+                                                                                            <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                        <select style="width: 100%;" id="fourthHourTeacher" name="fourthHourTeacher">
+                                                                                            <option value="">استاد...</option>
+                                                                                            <%  if(staff.length>0){ 
+                                                                                            for(s of staff){
+                                                                                                %>
+                                                                                            <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="background:lightblue; width: 20%;"><center>ساعت 5</center></td>
+                                                                                    <td style="width: 40%;">
+                                                                                        <select style="width: 100%;" id="fifthHourSubject" name="fifthHourSubject" >
+                                                                                            <option value="">مضمون...</option>
+                                                                                            <%  if(subjects.length>0){ 
+                                                                                            for(sub of subjects){
+                                                                                                %>
+                                                                                            <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                        <select style="width: 100%;" id="fifthHourTeacher" name="fifthHourTeacher">
+                                                                                            <option value="">استاد...</option>
+                                                                                            <%  if(staff.length>0){ 
+                                                                                            for(s of staff){
+                                                                                                %>
+                                                                                            <option value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="background:lightblue; width: 20%;"><center>ساعت 6</center></td>
+                                                                                    <td style="width: 40%;">
+                                                                                        <select style="width: 100%;" id="sixthHourSubject" name="sixthHourSubject">
+                                                                                            <option value="">مضمون...</option>
+                                                                                            <%  if(subjects.length>0){ 
+                                                                                            for(sub of subjects){
+                                                                                                %>
+                                                                                            <option value="<%= sub.name %>"><%= sub.name %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td style="border-left: solid 1px transparent; width: 40%;">
+                                                                                        <select style="width: 100%;" id="sixthHourTeacher" name="sixthHourTeacher">
+                                                                                            <option value="">استاد...</option>
+                                                                                            <%  if(staff.length>0){ 
+                                                                                            for(s of staff){
+                                                                                                %>
+                                                                                            <option  value="<%= s.name+ ' ' %><%= s.Lastname %>"><%= s.name+' ' %><%= s.Lastname %></option>
+                                                                                            <% }
+                                                                                        }%>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="  btn notika-add-todo" onClick="editScheduleData(this)" data-dismiss="modal">بلی</button>
+                                                                <button type="button" class="  btn notika-add-todo" data-dismiss="modal">خیر</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="modals-list mg-t-30">
+                                        <div class="modals-single">
+                                            <div class="modals-default-cl">
+                                                <div class="modal fade" id="deleteSchedule" role="dialog">
+                                                    <div class="modal-dialog modals-default">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div class="form-group">
+                                                                        <h2 class="col-form-label"><center>آیا مطمئن اید می خواهید حذف کنید؟</center></h2>
+                                                                        <input type="hidden" class="form-control" name="recipientName" id="recipientName">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="  btn notika-add-todo" onClick="postScheduleDelete(this)" data-dismiss="modal">بلی</button>
+                                                                <button type="button" class="  btn notika-add-todo" data-dismiss="modal">خیر</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+$('#deleteSchedule').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    modal.find('.modal-body input').val(recipient)
+})
+
+$('#editSchedule').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    
+    var arrayData = recipient.split(',');
+    // console.log(arrayData)
+    modal.find('.modal-body #scheduleId').val(arrayData[0]);
+    modal.find('.modal-body #EchosenClass').val(arrayData[1]);
+    modal.find('.modal-body #day').val(arrayData[2]);
+    modal.find('.modal-body #firstHourSubject').val(arrayData[3]);
+    modal.find('.modal-body #firstHourTeacher').val(arrayData[4]);
+    modal.find('.modal-body #secondHourSubject').val(arrayData[5]);
+    modal.find('.modal-body #secondHourTeacher').val(arrayData[6]);
+    modal.find('.modal-body #thirdHourSubject').val(arrayData[7]);
+    modal.find('.modal-body #thirdHourTeacher').val(arrayData[8]);
+    modal.find('.modal-body #fourthHourSubject').val(arrayData[9]);
+    modal.find('.modal-body #fourthHourTeacher').val(arrayData[10]);
+    modal.find('.modal-body #fifthHourSubject').val(arrayData[11]);
+    modal.find('.modal-body #fifthHourTeacher').val(arrayData[12]);
+    modal.find('.modal-body #sixthHourSubject').val(arrayData[13]);
+    modal.find('.modal-body #sixthHourTeacher').val(arrayData[14]);
+})
+$('#viewSchedule').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var modal = $(this)
+    
+    var arrayData = recipient.split(',');
+    // console.log(arrayData)
+    modal.find('.modal-body #scheduleId').val(arrayData[0]);
+    modal.find('.modal-body #EchosenClass').val(arrayData[1]);
+    modal.find('.modal-body #day').val(arrayData[2]);
+    modal.find('.modal-body #firstHourSubject').val(arrayData[3]);
+    modal.find('.modal-body #firstHourTeacher').val(arrayData[4]);
+    modal.find('.modal-body #secondHourSubject').val(arrayData[5]);
+    modal.find('.modal-body #secondHourTeacher').val(arrayData[6]);
+    modal.find('.modal-body #thirdHourSubject').val(arrayData[7]);
+    modal.find('.modal-body #thirdHourTeacher').val(arrayData[8]);
+    modal.find('.modal-body #fourthHourSubject').val(arrayData[9]);
+    modal.find('.modal-body #fourthHourTeacher').val(arrayData[10]);
+    modal.find('.modal-body #fifthHourSubject').val(arrayData[11]);
+    modal.find('.modal-body #fifthHourTeacher').val(arrayData[12]);
+    modal.find('.modal-body #sixthHourSubject').val(arrayData[13]);
+    modal.find('.modal-body #sixthHourTeacher').val(arrayData[14]);
+})
+
+</script>
+<script src="/js/myJava.js"></script>
+<!-- Form Element area End-->
+<!-- End Realtime sts area-->
+<!-- Start Footer area-->
+    <!-- Form Element area End-->
+<!-- End Realtime sts area-->
+<!-- Start Footer area-->
+<%- include('../includes/footer.ejs')%>
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+<!-- Data Table JS============================================ -->
+<script src="js/data-table/jquery.dataTables.minSix.js"></script>
+<script src="js/data-table/data-table-act.js"></script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

@@ -1,0 +1,136 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top">
+	<!-- BEGIN HEADER -->
+    <%- include('../includes/header.ejs')%>
+	<!-- END HEADER -->
+	<!-- BEGIN CONTAINER -->
+	<div id="container" class="row-fluid">
+        <!-- BEGIN SIDEBAR -->
+        <%- include('../includes/sidebar.ejs')%>
+      <!-- END SIDEBAR -->
+      <!-- BEGIN PAGE -->  
+      <div id="main">
+         <!-- BEGIN PAGE CONTAINER-->
+         <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->   
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   <div id="theme-change" class="hidden-phone">
+                       <i class="icon-cogs"></i>
+                        <span class="settings">
+                            <span class="text">Theme:</span>
+                            <span class="colors">
+                                <span class="color-default" data-style="default"></span>
+                                <span class="color-gray" data-style="gray"></span>
+                                <span class="color-purple" data-style="purple"></span>
+                                <span class="color-navy-blue" data-style="navy-blue"></span>
+                            </span>
+                        </span>
+                   </div>
+                   <!-- END THEME CUSTOMIZER-->
+                  	<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        انستیتوت حسابداری
+                    </h3>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+                        </li>
+                        <li>
+                            <a href="/base"><%=pageTitle%></a> <span class="divider">&nbsp;</span>
+                        </li>
+                        <li class="pull-right search-wrap">
+                            <form class="hidden-phone">
+                                <div class="search-input-area">
+                                    <input id=" " class="search-query" type="text" placeholder="جستجو...">
+                                    <i class="icon-search"></i>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row-fluid">
+               <div class="span12">
+                    <div class="mainDiv">
+                            <table border="2">
+                                  <thead>
+                                      <tr>
+                                          <th colspan="5">تبدیلی</th>
+                                          <th colspan="4">انفکاک</th>
+                                          <th colspan="4">شمول مجدد</th>
+                                          <th colspan="7">فراغت</th>
+                                          <th rowspan="2">اسم و امضاء درج فراغت</th>
+                                          <th rowspan="2">ملاحضات</th>
+                                          <th rowspan="2">فوتو</th>
+                                      </tr>
+                                      <tr>
+                                          <th class="verticalText" >از صنف در سال</th>
+                                          <th class="verticalText" >رشته</th>
+                                          <th class="verticalText" >به مکتب که تبدیل شده</th>
+                                          <th class="verticalText" >ولایت</th>
+                                          <th class="verticalText" >نمبر مکتوب تبدیلی</th>
+                                          <th class="verticalText" >صنف و سال</th>
+                                          <th class="verticalText" >رشته</th>
+                                          <th class="verticalText" >علت انفکاک</th>
+                                          <th class="verticalText" >نمبر  مکتوب انفکاک</th>
+                                          <th class="verticalText" >صنف شمولیت</th>
+                                          <th class="verticalText" >رشته</th>
+                                          <th class="verticalText" >سال</th>
+                                          <th class="verticalText" >نمبر مکتوب</th>
+                                          <th class="verticalText" >صنف فارغه</th>
+                                          <th class="verticalText" >رشته</th>
+                                          <th class="verticalText" >سال</th>
+                                          <th class="verticalText" >امتحان دولتی</th>
+                                          <th class="verticalText" >اوسط نهائی</th>
+                                          <th class="verticalText" >درجه فراغت</th>
+                                          <th class="verticalText" >نمبر مکتوب فراغت</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                         <td>1</td>
+                                         <td>2</td>
+                                         <td>3</td>
+                                         <td>4</td>
+                                         <td>5</td>
+                                         <td>6</td>
+                                         <td>7</td>
+                                         <td>8</td>
+                                         <td>9</td>
+                                         <td>10</td>
+                                         <td>11</td>
+                                         <td>12</td>
+                                         <td>13</td>
+                                         <td>14</td>
+                                         <td>15</td>
+                                         <td>16</td>
+                                         <td>17</td>
+                                         <td>18</td>
+                                         <td>19</td>
+                                         <td>20</td>
+                                         <td>21</td>
+                                         <td>22</td>
+                                         <td>23</td>
+                                      </tr>
+                                  </tbody>
+                            </table>
+                        </div>      
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+        </div>
+        <!-- END PAGE CONTAINER-->
+    </div>
+    <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <%- include('../includes/end.ejs')%>

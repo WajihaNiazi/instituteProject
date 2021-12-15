@@ -1,0 +1,201 @@
+<%- include('../includes/head.ejs')%>
+<style>
+    #tableData{
+        direction: rtl;
+    }
+    .p{
+            text-align: center;
+        }
+        table{
+            direction: rtl
+        }
+        .verticalText
+       { 
+           -webkit-transform: rotate(-90deg); 
+           -moz-transform: rotate(-90deg); 
+          height: 70px;
+          text-align: center;
+
+       };
+
+</style>
+</head>
+<body>
+ <%- include('../includes/header.ejs')%> 
+    <div class="mainDiv">
+        <div class="HeadLines">
+            <center>
+                <p>وزارت معارف</p>
+                <p>معینیت تعلیمات تخنیکی و مسلکی</p>
+                <p>موسسه تعلیمی(مسلکی اداره و حسابداری هرات)</p>
+                <p>استاد رهنما()</p>
+                <h4>جدول نتایج امتحانات سمستر {}صنف()رشته()سال تعلیمی {}</h4>
+            </center>                           
+        </div>
+        <div style="float:left;  width: 20%; margin:-13% -10% -5%  0%" id="LeftImage">
+            <table border="2px" id="tableData">
+                <thead>
+                    <tr>
+                        <th colspan="4">خلص نتایج امتحانات</th>
+                    </tr>
+                    <tr>
+                        <th>امتحانات</th>
+                        <th>ذکور</th>
+                        <th>انات</th>
+                        <th>مجموع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>تعداد داخله</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>شامل امتحان</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>کامیاب</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ناکام</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>مشروط</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>معذرتی</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>محروم</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><div style="clear:both"></div>
+        <img style=" margin:-10% 0% 0%  0%; float: right;" id="RightImage" width="100px" height="100px" src="/img/x.png"><div style="clear:both"></div>
+        <table border="2px"  id="tableData">
+            <thead>
+                <tr>
+                    <th class="verticalText" rowspan="2">شماره</th>
+                    <th colspan="3">شهرت</th>
+                    <th class="verticalText" rowspan="2">نمبر اساس</th>
+                    <th class="verticalText" rowspan="2">امتحان</th>
+                    <th colspan="11"><center>مضامین</center></th>
+                    <th class="verticalText" rowspan="2">مجموعه نمرات</th>
+                    <th class="verticalText" rowspan="2">اوسط نمرات</th>
+                    <th class="verticalText" rowspan="2">نتیجه امتحانات</th>
+                    <th class="verticalText" rowspan="2">درجه در صنف</th>
+                    <th colspan="5">خلص ضوابط حاضری(ساعت)</th>
+                    <th class="verticalText" rowspan="2">ملاحظات</th>
+                </tr>
+                <tr>
+                    <th rowspan="2">اسم</th>
+                    <th rowspan="2">ولد</th>
+                    <th rowspan="2">ولدیت</th>
+                    <th>محاسبه دولتی</th>
+                    <th>محاسبه بانکی</th>
+                    <th>مکاتبه اداری</th>
+                    <th>احصائیه</th>
+                    <th>بیلانس</th>
+                    <th>بیمه</th>
+                    <th>تفتیش و کنترول</th>
+                    <th>ریاضی اقتصادی</th>
+                    <th>ثقافت اسلامی</th>
+                    <th>کمپیوتر</th>
+                    <th>انگلیسی</th>
+                    <th>حاضر</th>
+                    <th>غیر حاضر</th>
+                    <th>مریض</th>
+                    <th>رخصت</th>
+                    <th>ایام تعلیمی</th>
+                </tr>
+            </thead>
+            <%if(student.length>0){ let j=1;%>
+                <tbody>
+                    <%for(let i of student){%>
+                        <tr>
+                            <td rowspan="2"><%= j++ %></td>
+                            <td rowspan="2"><%= i.Name %></td>
+                            <td rowspan="2"><%= i.FatherName %></td>
+                            <td rowspan="2"><%= i.GrandFather %></td>
+                            <td class="verticalText"  rowspan="2"><%=i.BaseNumber%></td>
+                            <td >چانس اول</td>
+                            <td> <input type="text" class="score" style="outline:none;border:none;width: 30px;padding-bottom: 30px;align-self: center" name="score"  onkeyup="updateScore(this)">
+                                <input type="hidden" value="<%=i._id%>" class="id" id="id"></td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>    
+                        <tr>
+                            <td>چانس دوم</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>     
+                    <%}%>
+            </tbody>
+            <%}%>
+        </table>
+    </div>
+
+
+        <%- include('../includes/footer.ejs')%>
+     <!-- End Footer area-->
+     <script src="jsFunction.js"></script>
+
+        <%- include('../includes/end.ejs')%>
+  

@@ -1,0 +1,27 @@
+
+.headerModal{
+    background-color:#00c292;
+    padding:10px;
+    direction:rtl;
+    border-radius: 2%;
+    
+    
+}
+.modal-body{
+    text-align: right;
+     direction:rtl;
+          
+}
+.modal-body .tableRow
+{
+    padding:16px;
+   /* box-shadow: 2px 2px #00c292; */
+    border-bottom: 1px solid #00c292;
+    box-shadow: 2px 7px 13px -8px #00c2922e;
+    -webkit-box-shadow: 2px 7px 13px -8px #00c2922e;
+    -moz-box-shadow: 2px 7px 13px -8px #00c2922e;
+}
+/* span{
+    font-size: 18px;
+    font-weight: bold;
+} */

@@ -1,0 +1,342 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+        table tbody {
+            counter-reset: rowNumber;
+        }
+        
+        table tbody tr {
+        counter-increment: rowNumber;
+        }
+        
+        table tbody tr td:nth-child(1)::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+        <%- include('../includes/header.ejs')%> 
+    <!-- Main Menu area End-->
+    <!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                    <button  class="  btn notika-add-todo" onclick="getInternalStaff()">ثبت کارمند داخل تشکیل</button>
+                                    <button  class="  btn notika-add-todo" onclick="getExternalStaff()" >ثبت کارمند خارج تشکیل</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+<!-- Form Element area Start-->
+<form action="/getStaff" method="POST">
+    <div class="form-element-area">
+        <div class="container">
+            <div class="row" style="direction: rtl;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <div style="direction: rtl;">
+                                <div class="row">
+                                    <div id="na" style="float:right; display: none; " class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="name" id="name" class="form-control" placeholder=".لطفاً نام  را وارد کنید">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="Ln" style="float:right; display: none; " class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="Lastname" id="Lastname" class="form-control" placeholder=".لطفاً  تخلص را وارد کنید">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="Fn" style="float:right; display: none;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="Fathername" id="Fathername" class="form-control" placeholder=".لطفاً نام پدر را وارد کنید">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="FF" style="float:right; display: none;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="grandFather" id="grandFather" class="form-control" placeholder=".لطفاً نام پدرکلان را وارد کنید">
+                                            </div>
+                                        </div>
+                                    </div><div style="clear:both"></div>
+                                </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                <div class="row">
+                                    <div id="cu" style="float:right; display: none;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" name="currentJob" id="currentJob" class="form-control" placeholder="وظیفه فعلی">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="ma" style="float:right; display: none;"class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int nk-datapk-ctm form-elet-mg" id="data_1">
+                                                <div class="form-ic-cmp">
+                                                    <i  class="notika-icon notika-support"></i>
+                                                </div>
+                                                <div class="nk-int-st">
+                                                    <input type="text" name="major" id="major" class="form-control" placeholder="رشته"  >
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div id="de" style="float:right; display: none;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text"  name="degree" id="degree" class="form-control" placeholder="درجه تحصیل...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="ye" style="float:right; display: none;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-support"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="number"  name="yearsOfWorking" id="yearsOfWorking" class="form-control" placeholder="سابقه خدمت...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="direction:rtl;">
+                                <div class="row">
+                                    <div id="po" style="float:right; display: none;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-map"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" type="text" name="position" id="position" class="form-control" placeholder="بست...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="st" style="float:right; display: none;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-map"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <input type="text" type="text" name="step" id="step" class="form-control" placeholder="قدم...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="bt" style="direction:rtl; margin-right:2%; display: none;">
+                                <div class="row">
+                                    <div class="form-example-int mg-t-15">
+                                        <button type="button" onclick="postStaffData(this)" class="  btn notika-add-todo">ثبت</button>
+                                    </div><div style="clear:both"></div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="data-table-list">
+                                            <div class="table-responsive">
+                                                <table  id="data-table-basic" style=" direction:rtl; text-align: center;"  class="table table-striped" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th><center>شماره</center></th>
+                                                            <th><center>اسم</center></th>
+                                                            <th><center>تخلص</center></th>
+                                                            <th><center>ولد</center></th>
+                                                            <th><center>ولدیت</center></th>
+                                                            <th><center>وظیفه فعلی</center></th>
+                                                            <th><center>رشته</center></th>
+                                                            <th><center>مدرک تحصیلی</center></th>
+                                                            <th><center>تنظیمات</center></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <%if(staffs.length>0){ let j=0;
+                                                            for(let s of staffs){
+                                                                j++;%>
+                                                        <tr style="text-align: center;">
+                                                            <td></td>
+                                                            <td name="name"><center><%= s.name %></center></td>
+                                                            <td name="Lastname"><center><%= s.Lastname %></center></td>
+                                                            <td name="Fathername"><center><%= s.Fathername %></center></td>
+                                                            <td name="grandFather"><center><%= s.grandFather %></center></td>
+                                                            <td name="currentJob"><center><%= s.currentJob %></center></td>
+                                                            <td name="major"><center><%= s.major %></center></td>
+                                                            <td name="degree"><center><%= s.degree %></center></td>
+                                                            <td><center>
+                                                                <input type="hidden" name="staffId" value="<%= s._id %>">
+                                                                <button type="button" style="margin-left:3%;"  class="btn btn-warning notika-btn-warning" data-toggle="modal"  data-target="#editStaffModal" data-whatever="<%= [s._id, s.name,s.Lastname,s.Fathername,s.grandFather,s.currentJob,s.major,s.degree,s.yearsOfWorking,s.position,s.step] %>" onclick="returnRowToEdit(this)">ویرایش</button>
+                                                                <button id ="sample"  type="button" class="btn btn-danger notika-btn-danger"  data-toggle="modal" data-target="#deleteStaff" data-whatever="<%= s._id %>" onclick="returnRowToDelete(this)">حذف</button>                                        
+                                                            </center></td>
+                                                        </tr>
+                                                        <%}}%>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="modals-list mg-t-30">
+                                        <div class="modals-single">
+                                            <div class="modals-default-cl">
+                                                <div class="modal fade" id="editStaffModal" role="dialog">
+                                                    <div class="modal-dialog modals-default">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                                <div class="modal-body" >
+                                                                <form>
+                                                                    <div class="form-group" style="margin-left:4%;">
+                                                                        <input type="hidden" id="id" name="id" class="form-control" >
+                                                                        <input type="text" name="name" id="name" class="form-control" >
+                                                                        <input type="text" name="Lastname" id="Lastname" class="form-control">
+                                                                        <input type="text" name="Fathername" id="Fathername" class="form-control">
+                                                                        <input type="text" name="grandFather" id="grandFather" class="form-control">
+                                                                        <input type="text" name="currentJob" id="currentJob" class="form-control">
+                                                                        <input type="text" name="major" id="major" class="form-control">
+                                                                        <input type="text" name="degree" id="degree" class="form-control">
+                                                                        <input type="text" name="yearsOfWorking" id="yearsOfWorking" class="form-control">
+                                                                        <input type="text" name="position" id="position" class="form-control">
+                                                                        <input type="text" name="step" id="step" class="form-control">
+                                                                        
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="  btn notika-add-todo" onClick="editStaffData(this)" data-dismiss="modal">بلی</button>
+                                                                <button type="button" class="  btn notika-add-todo" data-dismiss="modal">خیر</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="modals-list mg-t-30">
+                                    <div class="modals-single">
+                                        <div class="modals-default-cl">
+                                            <div class="modal fade" id="deleteStaff" role="dialog">
+                                                <div class="modal-dialog modals-default">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+                                                                <div class="form-group">
+                                                                    <h2 class="col-form-label"><center>آیا مطمئن اید می خواهید حذف کنید؟</center></h2>
+                                                                    <input type="hidden" class="form-control" name="staffDT" id="staffDT">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="  btn notika-add-todo" onClick="postDeleteStaff(this)" data-dismiss="modal">بلی</button>
+                                                            <button type="button" class="  btn notika-add-todo" data-dismiss="modal">خیر</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</form>
+<script>
+$('#deleteStaff').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) // Button that triggered the modal
+var recipient = button.data('whatever') // Extract info from data-* attributes
+var modal = $(this)
+modal.find('.modal-body input').val(recipient)
+})
+
+$('#editStaffModal').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) // Button that triggered the modal
+var recipient = button.data('whatever') // Extract info from data-* attributes
+var modal = $(this)
+
+var arrayData = recipient.split(',');
+// console.log(arrayData)
+modal.find('.modal-body #id').val(arrayData[0]);
+modal.find('.modal-body #name').val(arrayData[1]);
+modal.find('.modal-body #Lastname').val(arrayData[2]);
+modal.find('.modal-body #Fathername').val(arrayData[3]);
+modal.find('.modal-body #grandFather').val(arrayData[4]);
+modal.find('.modal-body #currentJob').val(arrayData[5]);
+modal.find('.modal-body #major').val(arrayData[6]);
+modal.find('.modal-body #degree').val(arrayData[7]);
+modal.find('.modal-body #yearsOfWorking').val(arrayData[8]);
+modal.find('.modal-body #position').val(arrayData[9]);
+modal.find('.modal-body #step').val(arrayData[10]);
+})
+</script>
+<script src="/js/myJava.js"></script>
+<!-- Form Element area End-->
+<!-- Start Footer area-->
+<%- include('../includes/footer.ejs')%>
+<script src="js/data-table/jquery.dataTables.min.js"></script>
+<script src="js/data-table/data-table-act.js"></script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

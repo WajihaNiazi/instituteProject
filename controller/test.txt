@@ -1,0 +1,23 @@
+const Mongoose = require("mongoose");
+const Schema = Mongoose.Schema;
+
+const Score = new Schema({
+  s_id:{
+      type:Schema.Types.ObjectId,
+      ref:'StudentRegistration',
+  },
+  s_id:{
+    type:Schema.Types.ObjectId,
+    ref:'StudentRegistration',
+},
+  year:Number,
+  class:Number,
+  semester:Number,
+  score:[{
+    final:[{subject:String, score: Number}]
+  }]
+});
+// subject:[{Subject:String,
+//   Score:Number}]
+
+module.exports = Mongoose.model("Score", Score);

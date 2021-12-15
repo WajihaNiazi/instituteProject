@@ -1,0 +1,85 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body>
+    <%- include('../includes/header.ejs')%> 
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div   class="breadcomb-list">
+                    <div class="row">
+                        <div style="direction:rtl" class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div  class="breadcomb-ctn">
+                                    <h2 ><%= pageTitle%></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+      <!-- Form Element area Start-->
+      <div class="form-element-area">
+            <div class="container" >
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list mg-t-30">
+                            <div class="row" id="main">
+                            <div  id="cart" style="direction:rtl; padding: 5px; border:black solid 2px;width: 50%; float: right;">
+                                <div style="width:45%;box-sizing: border-box; float:right;padding: 5px">
+                                    <p>نمبر:<%=students.BaseNumber%></p>
+                                    <p>نام:<%=students.Name%></p>
+                                    <p>ولد:<%=students.FatherName%></p>
+                                    <p>صنف:<%=students.GraduationYear%></p>
+                                    <p>شماره تماس:<%=students.PhoneNumber%></p>
+                                </div>
+                                <div style="width:45; box-sizing: border-box;float:left;padding: 5px">
+                                    <%if(students.image!=='null'){%>
+                                        <img style="width:200px; height:100px" src="/<%=students.image%>" alt="">
+                                    <%}else if(students.image==='null'){%>
+                                        <img style="width:200px; height: 100px"  src="/images/0.580894001315684232_jazzaab_ir.jpg"  alt="">
+                                    <%}%>
+                                </div>
+                                
+                            </div><div style="clear:both"></div><br>
+                           
+                            
+
+                            </div>
+                            <button onclick="printPage()" class="btnPrint btn notika-add-todo">چاپ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="position:absolute; bottom:0%; width:100%;">
+                <%- include('../includes/footer.ejs')%>
+            </div>
+    <script src="/js/jquery.min.js"></script>
+
+
+ <script>
+    function printPage() {
+    var content = document.getElementById("main").innerHTML;
+    var css = "", i, j, c = document.getElementById("main").cloneNode(true);
+    for (i = 0; i < c.childNodes.length; i++) {
+        if (c.childNodes[i].nodeType == 1 && c.childNodes[i].getAttribute("id") == "main") {
+            c.removeChild(c.childNodes[i]);
+            content = c.innerHTML;
+            break;
+        }
+    }
+    var head = document.getElementsByTagName("head")[0].innerHTML;
+
+    var myWindow=window.open('','','');
+    myWindow.document.write("<html><head>"+head+"<style>body{padding:15px;}@media print {.printbtn {display:none;}}</style></head><body><button class='printbtn' onclick='window.print()'>چاپ</button><br><br>"+content+"</body></html>");
+}
+
+</script>
+<%- include('../includes/end.ejs')%>

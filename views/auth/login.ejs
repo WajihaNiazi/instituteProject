@@ -1,0 +1,25 @@
+<%- include('../includes/head.ejs')%>
+<link href="/css/novindatepicker.css" type="text/css" rel="stylesheet"/>
+<script src="/js/test.js"></script>
+<script src="/css/Btest.js"></script>
+<script src="/js/novindatepicker.js"></script>
+</head>
+<body>
+    <%- include('../includes/header.ejs')%> 
+    <%=errorMessage%>
+      <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username">
+        <label for="password">password:</label>
+        <input type="password" name="password" id="password">
+        <button type="submit">Login</button>
+        <a href="/reset">Reset password</a>
+
+      </form>
+<%- include('../includes/footer.ejs')%>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/novindatepicker.js"></script>
+<script src="/js/data.js"></script>
+<script> document.querySelectorAll('.datepicker').novinDatePicker();</script>
+<!-- End Footer area-->
+<%- include('../includes/end.ejs')%>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%=pageTitle%></title>
+</head>
+<body>
+    <div class="mainDiv">
+        <table border="2" style=" direction: rtl; border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th colspan="26">شهرت مکمل جدید الشمولان صنف() لیسه/انستیتوت( اداره و حسابداری هرات) سال شمول()</th>
+                    </tr>
+                    <tr>
+                        <th class="verticalText" rowspan="2">شماره</th>
+                        <th colspan="3">شهرت</th>
+                        <th colspan="4">نمبر تذکره</th>
+                        <th colspan="3">سکونت اصلی</th>
+                        <th colspan="3">سکونت فعلی</th>
+                        <th class="verticalText" rowspan="2">سال تولد</th>
+                        <th class="verticalText" rowspan="2">پیشه پدر</th>
+                        <th class="verticalText" rowspan="2">محل وظیفه پدر</th>
+                        <th colspan="4">سوابق تعلیمی</th>
+                        <th class="verticalText" rowspan="2">صنف شمول</th>
+                        <th class="verticalText" rowspan="2">تاریخ شمول</th>
+                        <th colspan="2">بخش</th>
+                        <th  class="verticalText" rowspan="2">ملاحضات</th>
+                    </tr>
+                    <tr>
+                        <th>اسم</th>
+                        <th>ولد</th>
+                        <th>ولدیت</th>
+                        <th class="verticalText">جلد</th>
+                        <th class="verticalText">صفحه</th>
+                        <th class="verticalText">ثبت</th>
+                        <th class="verticalText">نمبر صکوک</th>
+                        <th class="verticalText">قریه یا گذر</th>
+                        <th class="verticalText">ولسوالی/ناحیه</th>
+                        <th class="verticalText">ولایت</th>
+                        <th class="verticalText">قریه یا گذر</th>
+                        <th class="verticalText">ولسوالی/ناحیه</th>
+                        <th class="verticalText">ولایت</th>
+                        <th class="verticalText">فارغ صنف</th>
+                        <th class="verticalText">سال</th>
+                        <th class="verticalText">مکتب</th>
+                        <th class="verticalText">ولایت</th>
+                        <th class="verticalText">لیلیه</th>
+                        <th class="verticalText">نهاری</th>
+                        
+                    </tr>
+                </thead>
+                <%if(students.length>0){
+                    let j=1;%>
+                    <tbody>
+                        <%for(let i of students){
+                           %>
+                        <tr>
+                            <td><%= j++ %></td>
+                            <td><%= i.Name %></td>
+                            <td><%= i.FatherName %></td>
+                            <td><%= i.GrandFather %></td>
+                            <td><%= i.Skin %></td>
+                            <td><%= i.Page %></td>
+                            <td><%= i.Register %></td>
+                            <td><%= i.SakokNumber %></td>
+                            <td><%= i.MainVillage %></td>
+                            <td><%= i.MainRegion%></td>
+                            <td><%= i.MainProvince %></td>
+                            <td><%= i.CurrentVillage %></td>
+                            <td><%= i.CurrentRegion%></td>
+                            <td><%= i.CurrentProvince %></td>
+                            <td><%= i.BirthYear %></td>
+                            <td><%= i.FatherJob %></td>
+                            <td><%= i.FatherJoblocation %></td>
+                            <td><%= i.ClassGraduted %></td>
+                            <td><%= i.Year %></td>
+                            <td><%= i.School %></td>
+                            <td><%= i.Province %></td>
+                            <td><%= i.EnrollClass %></td>
+                            <td><%= i.EnrollDate %></td>
+                            <td ><%= i.Dormitory %></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                    <%}
+                        else{
+                    %>
+                        <tr>
+                            <td colspan="26">no student added!</td>
+                        </tr>
+                    <%
+                        }
+                    %>
+            </table>
+            <button>print</button>
+</div>
+</body>
+</html>
