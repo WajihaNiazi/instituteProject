@@ -9,15 +9,6 @@ function printPage() {
         }
     }
     var head = document.getElementsByTagName("head")[0].innerHTML;
-/*    var styles = document.styleSheets;
-    for (i = 0; i < styles.length; i++) {
-        rules = styles[i].cssRules;
-        if (rules) {
-            for (j = 0; j < rules.length; j++) {
-                css += rules[j].cssText;
-            }
-        }
-    }*/
     var myWindow=window.open('','','');
     myWindow.document.write("<html><head>"+head+"<style>body{padding:15px;}@media print {.printbtn {display:none;}}</style></head><body><button class='printbtn' onclick='window.print()'>Print Page</button><br><br>"+content+"<p><a href='/about/about_copyright.asp'>Copyright 1999-2015</a> by Refsnes Data. All Rights Reserved.</p></body></html>");
     //myWindow.document.write("<html><head><style>"+css+"body{padding:15px;}@media print {.printbtn {display:none;}}</style></head><body><button class='printbtn' onclick='window.print()'>Print Page</button><br><br>"+content+"<p><a href='/about/about_copyright.asp'>Copyright 1999-2015</a> by Refsnes Data. All Rights Reserved.</p></body></html>");
